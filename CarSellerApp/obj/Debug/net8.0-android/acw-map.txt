@@ -1,3 +1,0 @@
-CarSellerApp.MainActivity, CarSellerApp;crc64ea45b8d3368eab23.MainActivity
-CarSellerApp.MainActivity;crc64ea45b8d3368eab23.MainActivity
-carsellerapp.MainActivity;crc64ea45b8d3368eab23.MainActivity

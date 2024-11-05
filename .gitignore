@@ -12,3 +12,4 @@ obj/
 # Ignore IDE-specific files
 .vscode/
 .idea/
+CarSellerApp/obj
