@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSellerApp", "CarSellerApp.csproj", "{52569195-984A-4354-BF6E-5FAA6EC7BEBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSellerCore", "..\CarSellerCore\CarSellerCore.csproj", "{E3518BB8-6DBB-44F4-AD80-A77077937787}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
