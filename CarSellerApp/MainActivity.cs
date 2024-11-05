@@ -1,4 +1,7 @@
-﻿namespace CarSellerApp;
+﻿using CarSellerCore.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace CarSellerApp;
 
 [Activity(Label = "@string/app_name", MainLauncher = true)]
 public class MainActivity : Activity
@@ -7,7 +10,16 @@ public class MainActivity : Activity
     {
         base.OnCreate(savedInstanceState);
 
+        DIContainer.Configure(); // Initialize DI
+
+        var mainViewModel = DIContainer.Services.GetService<BaseViewModel>();
+
         // Set our view from the "main" layout resource
         SetContentView(Resource.Layout.activity_main);
+
+        var v = FindViewById<TextView>(Resource.Id.teste);
+        v.Text = mainViewModel.Teste;
+
+
     }
 }
