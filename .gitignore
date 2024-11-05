@@ -1,0 +1,14 @@
+# Ignore .NET build folders
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
