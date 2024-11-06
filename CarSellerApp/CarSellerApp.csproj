@@ -11,7 +11,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-rc.2.24473.5" />
+    <PackageReference Include="SimpleInjector" Version="5.5.0" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.8.4" />
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.8.3" />
+    <PackageReference Include="Xamarin.AndroidX.Navigation.UI" Version="2.8.3" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarSellerCore\CarSellerCore.csproj" />

@@ -1,10 +1,16 @@
-﻿using CarSellerCore.ViewModel;
+﻿using Android;
+using Android.App;
+using Android.OS;
+using Android.Widget;
+using AndroidX.AppCompat.App;
+using AndroidX.Navigation.Fragment;
+using CarSellerCore.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarSellerApp;
 
 [Activity(Label = "@string/app_name", MainLauncher = true)]
-public class MainActivity : Activity
+public class MainActivity : AppCompatActivity
 {
     protected override void OnCreate(Bundle? savedInstanceState)
     {
@@ -12,14 +18,9 @@ public class MainActivity : Activity
 
         DIContainer.Configure(); // Initialize DI
 
-        var mainViewModel = DIContainer.Services.GetService<BaseViewModel>();
-
-        // Set our view from the "main" layout resource
         SetContentView(Resource.Layout.activity_main);
-
-        var v = FindViewById<TextView>(Resource.Id.teste);
-        v.Text = mainViewModel.Teste;
-
-
+        
+        var navHostFragment = SupportFragmentManager.FindFragmentById(Resource.Id.my_nav_host_fragment) as NavHostFragment;
+        var navController = navHostFragment?.NavController;
     }
 }

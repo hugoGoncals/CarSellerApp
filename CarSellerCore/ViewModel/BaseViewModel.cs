@@ -6,7 +6,17 @@ public class BaseViewModel : ObservableObject
 {
     public BaseViewModel()
     {
+        _ = InitializeViewModel();
+    }
+
+    public async Task InitializeViewModel()
+    {
+        
+    }
+
+    public async Task OnAppearing()
+    {
+        
     }
     
-    public string Teste => "CONA";
 }
