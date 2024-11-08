@@ -1,4 +1,5 @@
-using CarSellerCore.ViewModel;
+using CarSellerCore.Services;
+using CarSellerCore.Services.Abstraction;
 using CarSellerCore.ViewModel.Dashboard;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ public static class DIContainer
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
                 .AddTransient<DashboardViewModel>() // Register your ViewModel
+                .AddSingleton<ICarService, CarService>()
                 .BuildServiceProvider());
     }
 }

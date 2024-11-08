@@ -4,20 +4,41 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:gravity="center">
+    
+    <ImageView android:id="@+id/filter" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    
+    <ImageView android:id="@+id/sortBy" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <!-- Title or Instruction -->
-    <TextView
-            android:id="@+id/text_firstFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is the First Fragment"
-            android:textSize="18sp"
-            android:layout_marginBottom="20dp" />
+<!--    <com.google.android.material.card.MaterialCardView-->
 
-    <!-- Button to navigate to the second fragment -->
-    <Button
-            android:id="@+id/navigate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go to Second Fragment" />
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--    android:clickable="true"-->
+<!--    android:focusable="true"-->
+<!--    android:checkable="true">-->
+
+<!--        &lt;!&ndash; Title or Instruction &ndash;&gt;-->
+<!--        <TextView-->
+<!--                android:id="@+id/text_firstFragment"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="This is the First Fragment"-->
+<!--                android:textSize="18sp"-->
+<!--                android:layout_marginBottom="20dp" />-->
+
+<!--        &lt;!&ndash; Button to navigate to the second fragment &ndash;&gt;-->
+<!--        <Button-->
+<!--                android:id="@+id/navigate_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Go to Second Fragment" />-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
 </LinearLayout>

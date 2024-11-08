@@ -14,7 +14,7 @@ public class BaseViewModel : ObservableObject
         
     }
 
-    public async Task OnAppearing()
+    public virtual async Task OnAppearing()
     {
         
     }

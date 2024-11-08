@@ -13,4 +13,23 @@
       <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resource\vehicles_dataset.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="vehicles_dataset.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resource\teste.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resource\dataset.json" />
+      <EmbeddedResource Include="Resource\dataset.json" />
+    </ItemGroup>
+
 </Project>

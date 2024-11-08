@@ -1,0 +1,119 @@
+<resources>
+  <dimen name="gap_1">4dp</dimen>
+  <dimen name="gap_2">8dp</dimen>
+  <dimen name="gap_3">12dp</dimen>
+  <dimen name="gap_4">16dp</dimen>
+  <dimen name="gap_5">20dp</dimen>
+  <dimen name="gap_6">24dp</dimen>
+  <dimen name="gap_7">28dp</dimen>
+  <dimen name="gap_8">32dp</dimen>
+  <dimen name="gap_9">36dp</dimen>
+  <dimen name="gap_10">40dp</dimen>
+  <dimen name="gap_11">44dp</dimen>
+  <dimen name="gap_12">48dp</dimen>
+  <dimen name="gap_13">52dp</dimen>
+  <dimen name="gap_14">56dp</dimen>
+  <dimen name="gap_15">60dp</dimen>
+  <dimen name="gap_16">64dp</dimen>
+  <dimen name="gap_17">68dp</dimen>
+  <dimen name="gap_18">72dp</dimen>
+  <dimen name="gap_19">76dp</dimen>
+  <dimen name="gap_20">80dp</dimen>
+  <dimen name="gap_21">84dp</dimen>
+  <dimen name="gap_22">88dp</dimen>
+  <dimen name="gap_23">92dp</dimen>
+  <dimen name="gap_25">100dp</dimen>
+  <dimen name="gap_26">104dp</dimen>
+  <dimen name="gap_28">112dp</dimen>
+  <dimen name="gap_29">116dp</dimen>
+  <dimen name="gap_30">120dp</dimen>
+  <dimen name="gap_31">124dp</dimen>
+  <dimen name="gap_32">128dp</dimen>
+  <dimen name="gap_33">132dp</dimen>
+  <dimen name="gap_34">136dp</dimen>
+  <dimen name="gap_35">140dp</dimen>
+  <dimen name="gap_38">152dp</dimen>
+  <dimen name="gap_39">156dp</dimen>
+  <dimen name="gap_40">160dp</dimen>
+  <dimen name="gap_41">164dp</dimen>
+  <dimen name="gap_42">168dp</dimen>
+  <dimen name="gap_43">172dp</dimen>
+  <dimen name="gap_44">176dp</dimen>
+  <dimen name="gap_46">184dp</dimen>
+  <dimen name="gap_47">188dp</dimen>
+  <dimen name="gap_48">192dp</dimen>
+  <dimen name="gap_49">196dp</dimen>
+  <dimen name="gap_50">200dp</dimen>
+  <dimen name="gap_51">204dp</dimen>
+  <dimen name="gap_52">208dp</dimen>
+  <dimen name="gap_54">216dp</dimen>
+  <dimen name="gap_55">220dp</dimen>
+  <dimen name="gap_57">228dp</dimen>
+  <dimen name="gap_58">232dp</dimen>
+  <dimen name="gap_59">236dp</dimen>
+  <dimen name="gap_60">240dp</dimen>
+  <dimen name="gap_64">256dp</dimen>
+  <dimen name="gap_68">272dp</dimen>
+  <dimen name="gap_69">276dp</dimen>
+  <dimen name="gap_73">292dp</dimen>
+  <dimen name="gap_82">328dp</dimen>
+  <dimen name="gap_84">336dp</dimen>
+  <dimen name="gap_86">344dp</dimen>
+  <dimen name="gap_87">348dp</dimen>
+  <dimen name="gap_92">368dp</dimen>
+  <dimen name="gap_98">392dp</dimen>
+  <dimen name="gap_103">412dp</dimen>
+
+  <dimen name="bottom_margin">@dimen/gap_5</dimen>
+  <dimen name="button_side_margin">@dimen/gap_18</dimen>
+
+  <dimen name="button_height_xs">@dimen/gap_10</dimen>
+  <dimen name="button_height_s">@dimen/gap_12</dimen>
+  <dimen name="button_height_m">@dimen/gap_14</dimen>
+  <dimen name="button_height_l">@dimen/gap_16</dimen>
+  <dimen name="button_height_xl">@dimen/gap_16</dimen>
+
+  <dimen name="corner_radius_s">@dimen/gap_1</dimen>
+  <dimen name="corner_radius_m">@dimen/gap_2</dimen>
+  <dimen name="corner_radius_l">@dimen/gap_4</dimen>
+
+  <dimen name="border_width_s">0.5dp</dimen>
+  <dimen name="border_width_m">1dp</dimen>
+
+  <dimen name="progress_bar_radius">@dimen/gap_1</dimen>
+
+  <dimen name="page_indicator_padding">6dp</dimen>
+  <dimen name="page_indicator_shape_innerRadius">0dp</dimen>
+  <dimen name="page_indicator_shape_thickness">@dimen/gap_1</dimen>
+  <dimen name="page_indicator_shape_thickness_3dp">3dp</dimen>
+  <dimen name="page_indicator_shape_height">@dimen/gap_2</dimen>
+
+  <!-- Default screen margins, per the Android Design guidelines. -->
+  <dimen name="activity_horizontal_margin">@dimen/gap_4</dimen>
+  <dimen name="activity_vertical_margin">@dimen/gap_4</dimen>
+  <dimen name="widget_content_margin">@dimen/gap_4</dimen>
+  <dimen name="widget_margin">@dimen/gap_4</dimen>
+  <dimen name="widget_title_margin_top">@dimen/gap_6</dimen>
+  <dimen name="widget_height">@dimen/gap_40</dimen>
+  <dimen name="widget_elevation">@dimen/gap_4</dimen>
+  <dimen name="widget_list_side_padding">@dimen/gap_4</dimen>
+  <dimen name="widget_empty_height">@dimen/gap_40</dimen>
+
+  <dimen name="tab_layout_elevation">1dp</dimen>
+  <dimen name="tab_item_padding_top">3dp</dimen>
+  <dimen name="tab_item_padding_bottom">@dimen/gap_1</dimen>
+  <dimen name="tab_item_padding_start">0dp</dimen>
+  <dimen name="tab_item_padding_end">0dp</dimen>
+
+  <!--Country flag dimens-->
+  <dimen name="country_flag_height_main">14dp</dimen>
+  <dimen name="country_flag_width_main">@dimen/gap_5</dimen>
+  <dimen name="country_flag_height_item">@dimen/gap_7</dimen>
+  <dimen name="country_flag_width_item">42dp</dimen>
+
+  <dimen name="measure_loader">@dimen/gap_9</dimen>
+  <dimen name="dialog_recycler_view_height">@dimen/gap_68</dimen>
+
+  <dimen name="bank_icon_height_item">@dimen/gap_4</dimen>
+  <dimen name="bank_icon_width_item">@dimen/gap_5</dimen>
+</resources>
