@@ -1,44 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:gravity="center">
-    
-    <ImageView android:id="@+id/filter" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-    
-    <ImageView android:id="@+id/sortBy" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-    
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:orientation="vertical"
+                                                   android:gravity="center">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/optionsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+                android:id="@+id/filter"
+                android:src="@drawable/ic_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:paddingLeft="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/sortBy"
+                android:src="@drawable/ic_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintRight_toLeftOf="@id/filter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            app:layout_constraintBottom_toTopOf="@+id/paginationLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/optionsLayout" />
 
-<!--    <com.google.android.material.card.MaterialCardView-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/paginationLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--    android:clickable="true"-->
-<!--    android:focusable="true"-->
-<!--    android:checkable="true">-->
+        <ImageView
+                android:id="@+id/leftOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
 
-<!--        &lt;!&ndash; Title or Instruction &ndash;&gt;-->
-<!--        <TextView-->
-<!--                android:id="@+id/text_firstFragment"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="This is the First Fragment"-->
-<!--                android:textSize="18sp"-->
-<!--                android:layout_marginBottom="20dp" />-->
+        <TextView
+                android:id="@+id/pageIndex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/leftOption"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
 
-<!--        &lt;!&ndash; Button to navigate to the second fragment &ndash;&gt;-->
-<!--        <Button-->
-<!--                android:id="@+id/navigate_button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Go to Second Fragment" />-->
-<!--    </com.google.android.material.card.MaterialCardView>-->
-
-</LinearLayout>
+        <ImageView
+                android:id="@+id/rightOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/pageIndex"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

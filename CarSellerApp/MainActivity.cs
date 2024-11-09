@@ -4,7 +4,9 @@ using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.Navigation.Fragment;
+using CarSellerApp.Services;
 using CarSellerCore.ViewModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Essentials;
 
@@ -19,6 +21,9 @@ public class MainActivity : AppCompatActivity
 
         DIContainer.Configure(); // Initialize DI
         Platform.Init(this, savedInstanceState);
+        
+        var navService = Ioc.Default.GetService<INavService>();
+        navService?.Init(this);
 
         SetContentView(Resource.Layout.activity_main);
         

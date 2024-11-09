@@ -8,7 +8,13 @@ namespace CarSellerApp.Adapter;
 
 public class CarAdapter : RecyclerView.Adapter
 {
+    private readonly ICarAdapterListenner _listenner;
     private List<Car> _carList;
+
+    public CarAdapter(ICarAdapterListenner listenner)
+    {
+        _listenner = listenner;
+    }
 
     public List<Car> CarList
     {
@@ -30,7 +36,7 @@ public class CarAdapter : RecyclerView.Adapter
     public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
     {
         View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.item_car, parent, false);
-        return new CarViewHolder(itemView);
+        return new CarViewHolder(itemView, _listenner);
     }
 
     public override int ItemCount => CarList.Count;

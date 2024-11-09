@@ -8,13 +8,13 @@
             android:id="@+id/firstFragment"
             android:name="CarSellerApp.Fragments.DashboardFragment"
             android:label="First Fragment">
-<!--        <action-->
-<!--                android:id="@+id/action_firstFragment_to_secondFragment"-->
-<!--                app:destination="@id/secondFragment" />-->
+        <action
+                android:id="@+id/action_firstFragment_to_secondFragment"
+                app:destination="@id/detailFragment" />
     </fragment>
 
-<!--    <fragment-->
-<!--            android:id="@+id/secondFragment"-->
-<!--            android:name="com.example.graphnavigationapp.SecondFragment"-->
-<!--            android:label="Second Fragment" />-->
+    <fragment
+            android:id="@+id/detailFragment"
+            android:name="CarSellerApp.Fragments.DetailFragment"
+            android:label="Second Fragment" />
 </navigation>

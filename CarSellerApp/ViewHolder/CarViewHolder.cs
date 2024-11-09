@@ -7,6 +7,7 @@ using Android.Widget;
 using AndroidX.ConstraintLayout.Widget;
 using AndroidX.RecyclerView.Widget;
 using Bumptech.Glide;
+using CarSellerApp.Adapter;
 using CarSellerCore.Model;
 using Google.Android.Material.ImageView;
 using Plugin.Media;
@@ -17,9 +18,13 @@ namespace CarSellerApp.ViewHolder;
 
 public class CarViewHolder : RecyclerView.ViewHolder
 {
+    private readonly ICarAdapterListenner _listenner;
     private Car _car;
     
+    private CancellationTokenSource _cancellationTokenSource;
+    
     public ConstraintLayout PhotoLayout { get; private set; }
+    public ConstraintLayout DetailLayout { get; private set; }
     public ShapeableImageView PhotoPlaceholder { get; private set; }
     
     
@@ -29,9 +34,11 @@ public class CarViewHolder : RecyclerView.ViewHolder
     public TextView MileageLabel { get; private set; }
     public TextView AuctionLabel { get; private set; }
 
-    public CarViewHolder(View itemView) : base(itemView)
+    public CarViewHolder(View itemView, ICarAdapterListenner listenner) : base(itemView)
     {
+        _listenner = listenner;
         PhotoLayout = itemView.FindViewById<ConstraintLayout>(Resource.Id.photo_layout);
+        DetailLayout = itemView.FindViewById<ConstraintLayout>(Resource.Id.detailLayout);
         PhotoPlaceholder = itemView.FindViewById<ShapeableImageView>(Resource.Id.goal_image);
         MakerLabel = itemView.FindViewById<TextView>(Resource.Id.maker_label);
         ModelLabel = itemView.FindViewById<TextView>(Resource.Id.model_label);
@@ -40,11 +47,17 @@ public class CarViewHolder : RecyclerView.ViewHolder
         AuctionLabel = itemView.FindViewById<TextView>(Resource.Id.auction_start_label);
         
         PhotoLayout.Click += PhotoLayoutOnClick;
+        DetailLayout.Click += DetailLayoutOnClick;
+    }
+
+    private void DetailLayoutOnClick(object? sender, EventArgs e)
+    {
+        _listenner.NavigateToDetails(_car.Id);
     }
 
     private void PhotoLayoutOnClick(object? sender, EventArgs e)
     {
-        AssociatePhotoAsync();
+        _listenner.OnPhotoAdded(_car.Id);
     }
 
     public void Bind(Car car)
@@ -55,6 +68,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         YearLabel.Text = car.Year.ToString();
         MileageLabel.Text = car.Mileage.ToString();
         AuctionLabel.Text = car.AuctionDateTime;
+        StartCountdown(car.AuctionDateTime);
         if (car.SelectedPhoto != null && car.SelectedPhoto.Length > 0)
         {
             Glide.With(PhotoPlaceholder.Context).Load(car.SelectedPhoto).Into(PhotoPlaceholder);
@@ -67,58 +81,53 @@ public class CarViewHolder : RecyclerView.ViewHolder
         }
     }
     
-    public async Task AssociatePhotoAsync()
+    private void StartCountdown(string auctionDateTime)
     {
-        try
-        {
-            var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-            {
-                CompressionQuality = 50,
-                PhotoSize = PhotoSize.MaxWidthHeight,
-                SaveMetaData = false,
-                MaxWidthHeight = 1500,
-            });
-            await LoadPhotoAsync(file, _car);
-        }
-        catch (Exception e)
-        {
-            if (e.Message.Contains("StoragePermission"))
-            {
-                return;
-            }
-        }
-    }
-    
-    private async Task LoadPhotoAsync(MediaFile photo, Car car)
-    {
-        if (photo == null)
-        {
-            car.SelectedPhoto = null;
-            return;
-        }
+        // Parse the auction end time
+        auctionDateTime = "2024/11/15 09:00:00";
+        DateTime auctionEndTime = DateTime.ParseExact(auctionDateTime, "yyyy/MM/dd HH:mm:ss", null);
+        long millisInFuture = (long)(auctionEndTime - DateTime.Now).TotalMilliseconds;
 
-        var stream = photo.GetStream();
-        using (var memoryStream = new MemoryStream())
-        {
-            await stream.CopyToAsync(memoryStream);
-            car.SelectedPhoto = memoryStream.ToArray(); // Set the photo in the model
-            UpdateImageLayout(car);
-        }
-    }
+        // Stop any existing countdown
+        StopCountdown();
 
-
-    private void UpdateImageLayout(Car car)
-    {
-        if (car.SelectedPhoto != null)
+        // Only start countdown if there's time remaining
+        if (millisInFuture > 0)
         {
-            Glide.With(PhotoPlaceholder.Context).Load(car.SelectedPhoto).Into(PhotoPlaceholder);
-            PhotoPlaceholder.Visibility = ViewStates.Visible;
+            _cancellationTokenSource = new CancellationTokenSource();
+            RunCountdown(millisInFuture, _cancellationTokenSource.Token);
         }
         else
         {
-            Glide.With(PhotoPlaceholder.Context).Clear(PhotoPlaceholder);
-            PhotoPlaceholder.Visibility = ViewStates.Gone;
+            AuctionLabel.Text = "Auction Ended";
         }
+    }
+
+    private async void RunCountdown(long millisInFuture, CancellationToken cancellationToken)
+    {
+        while (millisInFuture > 0 && !cancellationToken.IsCancellationRequested)
+        {
+            // Update the remaining time
+            TimeSpan timeRemaining = TimeSpan.FromMilliseconds(millisInFuture);
+            AuctionLabel.Text = $"{timeRemaining.Hours:D2}:{timeRemaining.Minutes:D2}:{timeRemaining.Seconds:D2}";
+
+            await Task.Delay(1000); // Wait for 1 second
+
+            // Decrement remaining time by 1 second
+            millisInFuture -= 1000;
+        }
+
+        if (!cancellationToken.IsCancellationRequested)
+        {
+            AuctionLabel.Text = "Auction Ended";
+        }
+    }
+
+    public void StopCountdown()
+    {
+        // Cancel the countdown if it's running
+        _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource = null;
     }
 
 }
