@@ -9,6 +9,7 @@ using AndroidX.RecyclerView.Widget;
 using Bumptech.Glide;
 using CarSellerApp.Adapter;
 using CarSellerCore.Model;
+using Google.Android.Material.Card;
 using Google.Android.Material.ImageView;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -24,6 +25,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
     private CancellationTokenSource _cancellationTokenSource;
     
     public ConstraintLayout PhotoLayout { get; private set; }
+    
+    public MaterialCardView RootLayout { get; private set; }
     public ConstraintLayout DetailLayout { get; private set; }
     public ShapeableImageView PhotoPlaceholder { get; private set; }
     
@@ -37,6 +40,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
     public CarViewHolder(View itemView, ICarAdapterListenner listenner) : base(itemView)
     {
         _listenner = listenner;
+        RootLayout = itemView.FindViewById<MaterialCardView>(Resource.Id.rootLayout);
         PhotoLayout = itemView.FindViewById<ConstraintLayout>(Resource.Id.photo_layout);
         DetailLayout = itemView.FindViewById<ConstraintLayout>(Resource.Id.detailLayout);
         PhotoPlaceholder = itemView.FindViewById<ShapeableImageView>(Resource.Id.goal_image);
@@ -68,6 +72,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
         YearLabel.Text = car.Year.ToString();
         MileageLabel.Text = car.Mileage.ToString();
         AuctionLabel.Text = car.AuctionDateTime;
+        DetailLayout.Clickable = true;
+        RootLayout.Alpha = 1f;
         StartCountdown(car.AuctionDateTime);
         if (car.SelectedPhoto != null && car.SelectedPhoto.Length > 0)
         {
@@ -84,7 +90,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
     private void StartCountdown(string auctionDateTime)
     {
         // Parse the auction end time
-        auctionDateTime = "2024/11/15 09:00:00";
+        auctionDateTime = "2024/11/09 15:53:00";
         DateTime auctionEndTime = DateTime.ParseExact(auctionDateTime, "yyyy/MM/dd HH:mm:ss", null);
         long millisInFuture = (long)(auctionEndTime - DateTime.Now).TotalMilliseconds;
 
@@ -100,6 +106,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
         else
         {
             AuctionLabel.Text = "Auction Ended";
+            DetailLayout.Clickable = false;
+            RootLayout.Alpha = 0.4f;
         }
     }
 
@@ -120,6 +128,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
         if (!cancellationToken.IsCancellationRequested)
         {
             AuctionLabel.Text = "Auction Ended";
+            DetailLayout.Clickable = false;
+            RootLayout.Alpha = 0.4f;
         }
     }
 

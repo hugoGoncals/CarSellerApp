@@ -11,10 +11,24 @@
 <!--        <item name="colorOnSurface">#000000</item>-->
 <!--        <item name="colorBackground">#FFFFFF</item>-->
 <!--        <item name="colorOnBackground">#000000</item>-->
-
-        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
     </style>
 
+    <!-- CardView Style -->
+    <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">6dp</item> 
+        <item name="strokeColor">#A2ABB1</item> 
+        <item name="strokeWidth">1dp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    
+    <style name="CardLabelStyle">
+        <item name="android:textSize">16sp</item> 
+        <item name="android:textColor">#333333</item> 
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+    
     <style name="GoalPhoto">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
@@ -34,5 +48,37 @@
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="SectionTitle">
+        <item name="android:textColor">#003366</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    
+    <style name="ItemTitle">
+        <item name="android:textColor">#336699</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <style name="ItemDescription">
+        <item name="android:textColor">#666666</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+
+    <style name="Title">
+        <item name="android:textColor">#333C45</item>
+        <item name="android:fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    
+    <style name="Subtitle">
+        <item name="android:textColor">#333C45</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

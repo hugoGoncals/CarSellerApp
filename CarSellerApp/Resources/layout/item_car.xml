@@ -1,9 +1,9 @@
 <com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.App.CardView"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
@@ -13,12 +13,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/CardViewStyle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <!-- Photo Section Layout -->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/photo_layout"
                 android:layout_width="0dp"
@@ -53,7 +55,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+        <!-- Details Section -->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/detailLayout"
                 android:layout_width="match_parent"
@@ -64,14 +66,18 @@
 
             <TextView
                     android:id="@+id/maker_label"
+                    style="@style/CardLabelStyle"
+                    android:text="Maker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                     android:id="@+id/model_label"
+                    style="@style/CardLabelStyle"
+                    android:text="Model"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -80,6 +86,8 @@
 
             <TextView
                     android:id="@+id/year_label"
+                    style="@style/CardLabelStyle"
+                    android:text="Year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -88,15 +96,18 @@
 
             <TextView
                     android:id="@+id/mileage_label"
+                    style="@style/CardLabelStyle"
+                    android:text="Mileage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="TextView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/year_label" />
 
             <TextView
                     android:id="@+id/auction_start_label"
+                    style="@style/CardLabelStyle"
+                    android:text="Auction Start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -104,7 +115,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/mileage_label" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
