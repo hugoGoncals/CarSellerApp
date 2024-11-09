@@ -1,11 +1,15 @@
+using CarSellerCore.Services.Abstraction;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CarSellerCore.ViewModel;
 
 public class BaseViewModel : ObservableObject
 {
-    public BaseViewModel()
+    protected readonly ICarService CarService;
+
+    public BaseViewModel(ICarService carService)
     {
+        CarService = carService;
         _ = InitializeViewModel();
     }
 

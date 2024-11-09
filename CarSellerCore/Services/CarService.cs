@@ -7,12 +7,11 @@ namespace CarSellerCore.Services;
 
 public class CarService : ICarService
 {
+    private List<Car> _cars { get; set; } = new List<Car>();
     public async Task<List<Car>> GetCarsAsync()
     {
         try
         {
-            // Read JSON data
-            
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Car)).Assembly;
             Stream stream = assembly.GetManifestResourceStream("CarSellerCore.Resource.dataset.json");
             string jsonString = "";
@@ -25,19 +24,37 @@ public class CarService : ICarService
                 PropertyNameCaseInsensitive = true
             };
 
-            List<Car> cars = JsonSerializer.Deserialize<List<Car>>(jsonString, options);
-            for (var index = 0; index < cars.Count; index++)
+            _cars = JsonSerializer.Deserialize<List<Car>>(jsonString, options);
+            for (var index = 0; index < _cars.Count; index++)
             {
-                var car = cars[index];
+                var car = _cars[index];
                 car.Id = index + 1;
             }
 
-            return cars;
+            return _cars;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error reading JSON file: {ex.Message}");
             return new List<Car>();
         }
+    }
+
+    public void UpdateCar(Car car)
+    {
+        var carToUpdate = _cars.FirstOrDefault(c => c.Id == car.Id);
+        carToUpdate = car;
+        
+        var index = _cars.FindIndex(c => c.Id == car.Id);
+        if (index != -1)
+        {
+            _cars[index] = carToUpdate;
+        }
+    }
+
+    public async Task<Car> GetCar(int id)
+    {
+        var car = _cars.FirstOrDefault(car => car.Id == id);
+        return car ?? new Car();
     }
 }

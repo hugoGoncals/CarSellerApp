@@ -1,16 +1,22 @@
+using CarSellerCore.Model;
+using CarSellerCore.Services;
+using CarSellerCore.Services.Abstraction;
+
 namespace CarSellerCore.ViewModel.Details;
 
 public class DetailViewModel : BaseViewModel
 {
-    public DetailViewModel()
+    public DetailViewModel(ICarService carService) : base(carService)
     {
     }
 
     public int? CarId { get; set; }
 
-    public override Task OnAppearing()
+    public Car Car { get; set; }
+
+    public override async Task OnAppearing()
     {
-        var t = CarId;
-        return base.OnAppearing();
+        base.OnAppearing();
+        Car ??= await CarService.GetCar(CarId ?? 0);
     }
 }

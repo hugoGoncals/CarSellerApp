@@ -71,10 +71,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         }
     }
 
-    public void OnPhotoAdded(int id)
-    {
-        ViewModel.OnAssociateImage(id);
-    }
+    public void OnPhotoAdded(int id) => ViewModel.OnAssociateImage(id);
 
     public void NavigateToDetails(int id) => ViewModel.NavigateToCarDetails(id);
 }

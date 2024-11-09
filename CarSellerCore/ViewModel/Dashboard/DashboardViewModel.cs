@@ -7,7 +7,6 @@ namespace CarSellerCore.ViewModel.Dashboard;
 
 public abstract class DashboardViewModel : BaseViewModel
 {
-    private readonly ICarService _carService;
     private List<Car> _carsList;
     private int _currentPage = 1;
     private int _pageLimit = 5;
@@ -28,9 +27,8 @@ public abstract class DashboardViewModel : BaseViewModel
     }
 
 
-    public DashboardViewModel(ICarService carService)
+    public DashboardViewModel(ICarService carService) : base(carService)
     {
-        _carService = carService;
     }
 
     public List<Car> CarsList
@@ -50,7 +48,7 @@ public abstract class DashboardViewModel : BaseViewModel
         await base.OnAppearing();
         try
         {
-            CarsList ??= await _carService.GetCarsAsync();
+            CarsList ??= await CarService.GetCarsAsync();
 
             DisplayList = CarsList.Take(5).ToList();
         }
@@ -92,6 +90,8 @@ public abstract class DashboardViewModel : BaseViewModel
                 await stream.CopyToAsync(memoryStream);
                 DisplayList.FirstOrDefault(car => car.Id == id).SelectedPhoto = memoryStream.ToArray();
             }
+
+            CarService.UpdateCar(DisplayList.FirstOrDefault(car => car.Id == id));
             
             OnPropertyChanged(nameof(DisplayList));
         }
