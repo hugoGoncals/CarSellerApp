@@ -16,12 +16,13 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
     private ImageView _previousPage;
     private ImageView _nextPage;
     private TextView _pageIndicator;
+    private RecyclerView _recyclerView;
 
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
         View view = inflater.Inflate(Resource.Layout.dashboard, container, false);
-        var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
+        _recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
         _sortByImage = view.FindViewById<ImageView>(Resource.Id.sortBy);
         _previousPage = view.FindViewById<ImageView>(Resource.Id.leftOption);
         _nextPage = view.FindViewById<ImageView>(Resource.Id.rightOption);
@@ -33,9 +34,9 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
 
         var layoutManager = new LinearLayoutManager(view.Context);
         _carAdapter = new CarAdapter(this);
-        recyclerView.SetLayoutManager(layoutManager);
-        recyclerView.AddItemDecoration(new CommonItemSpaceDecoration(Context, 0, 0, 20, 0));
-        recyclerView.SetAdapter(_carAdapter);
+        _recyclerView.SetLayoutManager(layoutManager);
+        _recyclerView.AddItemDecoration(new CommonItemSpaceDecoration(Context, 0, 0, 20, 0));
+        _recyclerView.SetAdapter(_carAdapter);
 
         _pageIndicator.Text = ViewModel.CurrentPage.ToString();
         
@@ -44,11 +45,13 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
 
     private void NextPageOnClick(object? sender, EventArgs e)
     {
+        _recyclerView.ScrollToPosition(0);
         ViewModel.NextPage();
     }
 
     private void PreviousPageOnClick(object? sender, EventArgs e)
     {
+        _recyclerView.ScrollToPosition(0);
         ViewModel.PreviousPage();
     }
 
@@ -74,4 +77,5 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
     public void OnPhotoAdded(int id) => ViewModel.OnAssociateImage(id);
 
     public void NavigateToDetails(int id) => ViewModel.NavigateToCarDetails(id);
+    public void OnFavoriteClick(int carId, bool isFavorite) => ViewModel.OnFavorite(carId, isFavorite);
 }

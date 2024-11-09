@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Android.Animation;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -30,6 +32,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
     public ConstraintLayout DetailLayout { get; private set; }
     public ShapeableImageView PhotoPlaceholder { get; private set; }
     
+    public ImageView FavoriteImage { get; private set; }
     
     public TextView MakerLabel { get; private set; }
     public TextView ModelLabel { get; private set; }
@@ -42,6 +45,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         _listenner = listenner;
         RootLayout = itemView.FindViewById<MaterialCardView>(Resource.Id.rootLayout);
         PhotoLayout = itemView.FindViewById<ConstraintLayout>(Resource.Id.photo_layout);
+        FavoriteImage = itemView.FindViewById<ImageView>(Resource.Id.favoriteImage);
         DetailLayout = itemView.FindViewById<ConstraintLayout>(Resource.Id.detailLayout);
         PhotoPlaceholder = itemView.FindViewById<ShapeableImageView>(Resource.Id.goal_image);
         MakerLabel = itemView.FindViewById<TextView>(Resource.Id.maker_label);
@@ -52,16 +56,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         
         PhotoLayout.Click += PhotoLayoutOnClick;
         DetailLayout.Click += DetailLayoutOnClick;
-    }
-
-    private void DetailLayoutOnClick(object? sender, EventArgs e)
-    {
-        _listenner.NavigateToDetails(_car.Id);
-    }
-
-    private void PhotoLayoutOnClick(object? sender, EventArgs e)
-    {
-        _listenner.OnPhotoAdded(_car.Id);
+        FavoriteImage.Click += FavoriteClick;
     }
 
     public void Bind(Car car)
@@ -85,19 +80,19 @@ public class CarViewHolder : RecyclerView.ViewHolder
             Glide.With(PhotoPlaceholder.Context).Clear(PhotoPlaceholder);
             PhotoPlaceholder.Visibility = ViewStates.Gone;
         }
+
+        int imageResId = _car.Favourite ? Resource.Drawable.ic_favorite_on : Resource.Drawable.ic_favorite_off;
+        FavoriteImage.SetImageResource(imageResId);
     }
     
     private void StartCountdown(string auctionDateTime)
     {
-        // Parse the auction end time
-        auctionDateTime = "2024/11/09 15:53:00";
+        //auctionDateTime = "2024/11/09 15:53:00";
         DateTime auctionEndTime = DateTime.ParseExact(auctionDateTime, "yyyy/MM/dd HH:mm:ss", null);
         long millisInFuture = (long)(auctionEndTime - DateTime.Now).TotalMilliseconds;
 
-        // Stop any existing countdown
         StopCountdown();
 
-        // Only start countdown if there's time remaining
         if (millisInFuture > 0)
         {
             _cancellationTokenSource = new CancellationTokenSource();
@@ -115,13 +110,11 @@ public class CarViewHolder : RecyclerView.ViewHolder
     {
         while (millisInFuture > 0 && !cancellationToken.IsCancellationRequested)
         {
-            // Update the remaining time
             TimeSpan timeRemaining = TimeSpan.FromMilliseconds(millisInFuture);
             AuctionLabel.Text = $"{timeRemaining.Hours:D2}:{timeRemaining.Minutes:D2}:{timeRemaining.Seconds:D2}";
 
-            await Task.Delay(1000); // Wait for 1 second
+            await Task.Delay(1000);
 
-            // Decrement remaining time by 1 second
             millisInFuture -= 1000;
         }
 
@@ -135,9 +128,35 @@ public class CarViewHolder : RecyclerView.ViewHolder
 
     public void StopCountdown()
     {
-        // Cancel the countdown if it's running
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource = null;
     }
+    
+    private void FavoriteClick(object? sender, EventArgs e)
+    {
+        // Scale down animation to 0.7 over 100ms
+        var scaleDownX = ObjectAnimator.OfFloat(FavoriteImage, "scaleX", 0.7f);
+        var scaleDownY = ObjectAnimator.OfFloat(FavoriteImage, "scaleY", 0.7f);
+        scaleDownX.SetDuration(100);
+        scaleDownY.SetDuration(100);
 
+        // Scale up animation back to 1 over 100ms
+        var scaleUpX = ObjectAnimator.OfFloat(FavoriteImage, "scaleX", 1f);
+        var scaleUpY = ObjectAnimator.OfFloat(FavoriteImage, "scaleY", 1f);
+        scaleUpX.SetDuration(100);
+        scaleUpY.SetDuration(100);
+        
+        // Set up AnimatorSet to play animations in sequence
+        var animatorSet = new AnimatorSet();
+        animatorSet.Play(scaleDownX).With(scaleDownY);
+        animatorSet.Play(scaleUpX).With(scaleUpY).After(scaleDownX);
+
+        // Start the animation
+        animatorSet.Start();
+        _listenner.OnFavoriteClick(_car.Id, !_car.Favourite);
+    }
+
+    private void DetailLayoutOnClick(object? sender, EventArgs e) => _listenner.NavigateToDetails(_car.Id);
+
+    private void PhotoLayoutOnClick(object? sender, EventArgs e) => _listenner.OnPhotoAdded(_car.Id);
 }

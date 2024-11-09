@@ -124,4 +124,17 @@ public abstract class DashboardViewModel : BaseViewModel
     
     public abstract void NavigateToCarDetails(int id);
 
+    public void OnFavorite(int carId, bool isFavorite)
+    {
+        try
+        {
+            DisplayList.FirstOrDefault(car => car.Id == carId).Favourite = isFavorite;
+            CarService.UpdateCar(DisplayList.FirstOrDefault(car => car.Id == carId));
+            OnPropertyChanged(nameof(DisplayList));
+        }
+        catch (Exception e)
+        {
+            
+        }
+    }
 }
