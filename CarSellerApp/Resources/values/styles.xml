@@ -71,5 +71,29 @@
         <item name="android:fontFamily">@font/inter_regular</item>
         <item name="android:textSize">16sp</item>
     </style>
+    
+    <style name="CustomSliderTheme" parent="Widget.Material3.Slider">
+        <item name="thumbColor">#666666</item>
+        <item name="trackColorActive">#666666</item>
+        <item name="trackColorInactive">#CCCCCC</item>
+        <item name="haloColor">#4D666666</item>
+        <item name="tickColorActive">#666666</item>
+        <item name="tickColorInactive">#CCCCCC</item>
+    </style>
+    
+    <style name="ButtonOutlinedWhite" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:height">@dimen/gap_15</item>
+        <item name="android:width">0dp</item>
+        <item name="strokeColor">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">#333C45</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">@dimen/corner_radius_m</item>
+        <item name="android:layout_marginBottom">@dimen/bottom_margin</item>
+        <item name="android:layout_marginStart">@dimen/button_side_margin</item>
+        <item name="android:layout_marginEnd">@dimen/button_side_margin</item>
+    </style>
 
 </resources>

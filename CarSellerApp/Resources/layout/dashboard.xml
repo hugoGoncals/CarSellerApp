@@ -16,24 +16,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-                android:id="@+id/filter"
-                android:src="@drawable/ic_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/sortBy"
+                android:src="@drawable/ic_filters_off"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
                 android:paddingLeft="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-                android:id="@+id/sortBy"
-                android:src="@drawable/ic_sort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintRight_toLeftOf="@id/filter"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
@@ -42,8 +34,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/sortBy"
-                app:layout_constraintTop_toTopOf="parent"  />
+                app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

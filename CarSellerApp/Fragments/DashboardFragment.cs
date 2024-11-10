@@ -1,11 +1,9 @@
 using System.ComponentModel;
 using Android.Views;
-using AndroidX.Navigation;
 using AndroidX.RecyclerView.Widget;
 using CAPMobile.Droid.ItemDecoration;
 using CarSellerApp.Adapter;
 using CarSellerApp.Fragments.Base;
-using CarSellerApp.ViewModels;
 using CarSellerCore.ViewModel.Dashboard;
 
 namespace CarSellerApp.Fragments;
@@ -46,6 +44,9 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         var adapter = new ArrayAdapter<int>(view.Context, Android.Resource.Layout.SimpleSpinnerItem, ViewModel.PagesLimitPerPage);
         adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
         _spinnerPage.Adapter = adapter;
+        
+        int imageResId = ViewModel.Filters ? Resource.Drawable.ic_filters_on : Resource.Drawable.ic_filters_off;
+        _sortByImage.SetImageResource(imageResId);
 
         // Handle selection events
         _spinnerPage.ItemSelected += SpinnerPageOnItemSelected;

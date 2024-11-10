@@ -27,6 +27,8 @@ public abstract class DashboardViewModel : BaseViewModel
         15
     };
 
+    public bool Filters => CarService.FilterSelection is not null;
+
     public int PageLimit
     {
         get => _pageLimit;

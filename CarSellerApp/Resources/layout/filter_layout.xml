@@ -34,7 +34,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/makerLayout"
-                    android:layout_width="200dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Maker"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
 
                 <AutoCompleteTextView
                         android:id="@+id/autoComplete"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
                 />
@@ -52,7 +52,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/modelLayout"
-                    android:layout_width="200dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Model"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
 
                 <AutoCompleteTextView
                         android:id="@+id/modelAutoComplete"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
                 />
@@ -71,10 +71,12 @@
 
             <com.google.android.material.slider.Slider
                     android:id="@+id/priceRange"
+                    style="@style/CustomSliderTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:valueFrom="0.0"
                     android:valueTo="100.0"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modelLayout" />
@@ -91,6 +93,7 @@
             
             <com.google.android.material.slider.Slider
                     android:id="@+id/maxValue"
+                    style="@style/CustomSliderTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:valueFrom="0.0"
@@ -152,8 +155,8 @@
 
     <Button
             android:id="@+id/confirmOptions"
-            style="@style/Widget.Material3.Button.ElevatedButton"
-            android:layout_width="wrap_content"
+            style="@style/ButtonOutlinedWhite"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="Confirm selection"
