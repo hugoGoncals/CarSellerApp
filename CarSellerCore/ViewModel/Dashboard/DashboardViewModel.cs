@@ -20,6 +20,13 @@ public abstract class DashboardViewModel : BaseViewModel
 
     private int MaxPages => CarsList.Count / 5;
 
+    public List<int> PagesLimitPerPage => new()
+    {
+        5,
+        10,
+        15
+    };
+
     public int PageLimit
     {
         get => _pageLimit;
@@ -36,6 +43,8 @@ public abstract class DashboardViewModel : BaseViewModel
         get => _carsList;
         set => SetProperty(ref _carsList, value);
     }
+    
+    public List<Car> FilteredList { get; set; }
 
     public List<Car> DisplayList
     {
@@ -49,13 +58,66 @@ public abstract class DashboardViewModel : BaseViewModel
         try
         {
             CarsList ??= await CarService.GetCarsAsync();
+            FilteredList ??= CarsList;
 
-            DisplayList = CarsList.Take(5).ToList();
+            if (CarService.FilterSelection is not null)
+            {
+                FilterCarsForAuction();
+                return;
+            }
+            
+            DisplayList = FilteredList.Take(5).ToList();
         }
         catch (Exception e)
         {
             
         } 
+    }
+
+    private void FilterCarsForAuction()
+    {
+        var filters = CarService.FilterSelection;
+
+        FilteredList = new List<Car>(CarsList);
+
+        FilteredList = FilteredList.Where(car =>
+            car.StartingBid >= filters.BindingRange.start && car.StartingBid <= filters.BindingRange.end).ToList();
+
+        if (!string.IsNullOrEmpty(filters.SelectedMaker))
+        {
+            FilteredList.RemoveAll(car => car.Make != filters.SelectedMaker);
+        }
+        
+        if (!string.IsNullOrEmpty(filters.SelectedModel))
+        {
+            FilteredList.RemoveAll(car => car.Model != filters.SelectedModel);
+        }
+        
+        if (filters.ShowOnlyFavorites)
+        {
+            FilteredList.RemoveAll(car => !car.Favourite);
+        }
+
+        if (filters.SortBy is not null)
+        {
+            switch (filters.SortBy)
+            {
+                case FilterType.Make:
+                    FilteredList = FilteredList.OrderBy(car => car.Make).ToList();
+                    break;
+                case FilterType.Mileage:
+                    FilteredList = FilteredList.OrderBy(car => car.Mileage).ToList();
+                    break;
+                case FilterType.StartingBid:
+                    FilteredList = FilteredList.OrderBy(car => car.StartingBid).ToList();
+                    break;
+                case FilterType.AuctionDate:
+                    FilteredList = FilteredList.OrderBy(car => car.AuctionDateTime).ToList();
+                    break;
+            }
+        }
+        
+        DisplayList = FilteredList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
     }
 
     public string Title => "This is dashboard title";
@@ -102,12 +164,12 @@ public abstract class DashboardViewModel : BaseViewModel
 
     public void NextPage()
     {
-        if (CurrentPage * PageLimit >= CarsList.Count)
+        if (CurrentPage * PageLimit >= FilteredList.Count)
         {
             return;
         }
 
-        DisplayList = CarsList.Skip(CurrentPage * PageLimit).Take(PageLimit).ToList();
+        DisplayList = FilteredList.Skip(CurrentPage * PageLimit).Take(PageLimit).ToList();
         CurrentPage++;
     }
 
@@ -119,10 +181,8 @@ public abstract class DashboardViewModel : BaseViewModel
         }
 
         CurrentPage--;
-        DisplayList = CarsList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
+        DisplayList = FilteredList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
     }
-    
-    public abstract void NavigateToCarDetails(int id);
 
     public void OnFavorite(int carId, bool isFavorite)
     {
@@ -137,4 +197,16 @@ public abstract class DashboardViewModel : BaseViewModel
             
         }
     }
+
+    public void OnPageLimitChanged(int pos)
+    {
+        var size = PagesLimitPerPage[pos];
+        var oldLimit = PageLimit;
+        PageLimit = size;
+        DisplayList = FilteredList.Skip((CurrentPage - 1) * oldLimit).Take(PageLimit).ToList();
+    }
+    
+    public abstract void NavigateToCarDetails(int id);
+
+    public abstract void NavigateToFilters();
 }

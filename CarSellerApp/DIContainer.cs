@@ -4,6 +4,7 @@ using CarSellerCore.Services;
 using CarSellerCore.Services.Abstraction;
 using CarSellerCore.ViewModel.Dashboard;
 using CarSellerCore.ViewModel.Details;
+using CarSellerCore.ViewModel.Filter;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,7 @@ public static class DIContainer
                 .AddSingleton<ICarService, CarService>()
                 .AddSingleton<INavService, NavService>()
                 .AddTransient<DashboardViewModel, AndroidDashboardViewModel>()
+                .AddTransient<FilterViewModel, AndroidFilterViewModel>()
                 .AddTransient<DetailViewModel>()
                 .BuildServiceProvider());
 

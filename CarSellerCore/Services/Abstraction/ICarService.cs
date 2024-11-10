@@ -4,6 +4,8 @@ namespace CarSellerCore.Services.Abstraction;
 
 public interface ICarService
 {
+    FilterModel FilterSelection { get; set; }
+    
     Task<List<Car>> GetCarsAsync();
     
     void UpdateCar(Car car);

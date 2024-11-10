@@ -13,4 +13,6 @@ public interface INavService
     void Navigate(int resId, Bundle args);
 
     void Navigate(int resId, Bundle args, NavOptions navOptions);
+
+    void Pop();
 }

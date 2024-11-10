@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Android.Views;
+using AndroidX.Navigation;
 using AndroidX.RecyclerView.Widget;
 using CAPMobile.Droid.ItemDecoration;
 using CarSellerApp.Adapter;
@@ -17,6 +18,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
     private ImageView _nextPage;
     private TextView _pageIndicator;
     private RecyclerView _recyclerView;
+    private Spinner _spinnerPage;
 
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -27,6 +29,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         _previousPage = view.FindViewById<ImageView>(Resource.Id.leftOption);
         _nextPage = view.FindViewById<ImageView>(Resource.Id.rightOption);
         _pageIndicator = view.FindViewById<TextView>(Resource.Id.pageIndex);
+        _spinnerPage = view.FindViewById<Spinner>(Resource.Id.page_limits);
         
         _sortByImage.Click += SortByImageOnClick;
         _previousPage.Click += PreviousPageOnClick;
@@ -40,12 +43,24 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
 
         _pageIndicator.Text = ViewModel.CurrentPage.ToString();
         
+        var adapter = new ArrayAdapter<int>(view.Context, Android.Resource.Layout.SimpleSpinnerItem, ViewModel.PagesLimitPerPage);
+        adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+        _spinnerPage.Adapter = adapter;
+
+        // Handle selection events
+        _spinnerPage.ItemSelected += SpinnerPageOnItemSelected;
+        
         return view;
+    }
+
+    private void SpinnerPageOnItemSelected(object? sender, AdapterView.ItemSelectedEventArgs e)
+    {
+        ViewModel.OnPageLimitChanged(e.Position);
     }
 
     private void NextPageOnClick(object? sender, EventArgs e)
     {
-        _recyclerView.ScrollToPosition(0);
+        _recyclerView.ScrollToPosition(0); 
         ViewModel.NextPage();
     }
 
@@ -57,7 +72,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
 
     private void SortByImageOnClick(object? sender, EventArgs e)
     {
-        
+        ViewModel.NavigateToFilters();
     }
 
     protected override void OnPropertyChanged(object sender, PropertyChangedEventArgs e)

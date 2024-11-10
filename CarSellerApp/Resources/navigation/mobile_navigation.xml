@@ -11,10 +11,16 @@
         <action
                 android:id="@+id/action_firstFragment_to_secondFragment"
                 app:destination="@id/detailFragment" />
+        <action
+                android:id="@+id/action_dashboard_to_filters"
+                app:destination="@id/filtersFragment" />
     </fragment>
 
     <fragment
             android:id="@+id/detailFragment"
-            android:name="CarSellerApp.Fragments.DetailFragment"
-            android:label="Second Fragment" />
+            android:name="CarSellerApp.Fragments.DetailFragment"/>
+    
+    <fragment
+            android:id="@+id/filtersFragment"
+            android:name="CarSellerApp.Fragments.FilterFragment"/>
 </navigation>

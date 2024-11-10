@@ -1,4 +1,5 @@
 using AndroidX.Navigation;
+using Object = Java.Lang.Object;
 
 namespace CarSellerApp.Services;
 
@@ -10,6 +11,11 @@ public class NavService : INavService
     public NavController NavController => Navigation.FindNavController(_activity, Resource.Id.my_nav_host_fragment);
 
     public void Init(MainActivity activity) => _activity = activity;
+    
+    public void Pop()
+    {
+        Catch(() => NavController.PopBackStack());
+    }
 
     public void Navigate(int resId)
     {

@@ -26,4 +26,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CarSellerCore\CarSellerCore.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\drawable\ic_favorite_on.xml" />
+    <AndroidResource Include="Resources\drawable\ic_favorite_on.xml" />
+  </ItemGroup>
 </Project>

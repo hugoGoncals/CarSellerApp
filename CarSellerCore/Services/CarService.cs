@@ -8,6 +8,9 @@ namespace CarSellerCore.Services;
 public class CarService : ICarService
 {
     private List<Car> _cars { get; set; } = new List<Car>();
+    
+    public FilterModel FilterSelection { get; set; }
+
     public async Task<List<Car>> GetCarsAsync()
     {
         try
