@@ -6,7 +6,7 @@
     "fuel": "diesel",
     "year": 2022,
     "mileage": 743,
-    "auctionDateTime": "2024/04/15 09:00:00",
+    "auctionDateTime": "2024/11/11 19:00:00",
     "startingBid": 17000,
     "favourite": true,
     "details": {
@@ -43,7 +43,7 @@
     "fuel": "petrol",
     "year": 2022,
     "mileage": 9084,
-    "auctionDateTime": "2024/04/15 09:00:00",
+    "auctionDateTime": "2024/11/12 15:00:00",
     "startingBid": 15000,
     "favourite": false,
     "details": {
@@ -80,7 +80,7 @@
     "fuel": "diesel",
     "year": 2020,
     "mileage": 17293,
-    "auctionDateTime": "2024/04/15 09:00:00",
+    "auctionDateTime": "2024/11/13 11:00:00",
     "startingBid": 15000,
     "favourite": false,
     "details": {

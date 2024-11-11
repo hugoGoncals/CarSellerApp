@@ -27,7 +27,8 @@ public class CarService : ICarService
                 PropertyNameCaseInsensitive = true
             };
 
-            _cars = JsonSerializer.Deserialize<List<Car>>(jsonString, options);
+            var result = JsonSerializer.Deserialize<List<Car>>(jsonString, options);
+            _cars = result.OrderByDescending(car => DateTime.TryParse(car.AuctionDateTime, out DateTime parsedDate) ? parsedDate : DateTime.MinValue).ToList();
             for (var index = 0; index < _cars.Count; index++)
             {
                 var car = _cars[index];

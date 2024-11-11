@@ -22,9 +22,9 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/photo_layout"
+                android:id="@+id/photoLayout"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +43,7 @@
                     app:srcCompat="@drawable/ic_add" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/goal_image"
+                    android:id="@+id/carImage"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -64,66 +64,137 @@
                     app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Details Section -->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/detailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/photo_layout">
+                app:layout_constraintTop_toBottomOf="@id/photoLayout">
+
 
             <TextView
-                    android:id="@+id/maker_label"
-                    style="@style/CardLabelStyle"
-                    android:text="Maker"
+                    android:id="@+id/makerLabel"
+                    style="@style/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:text="Maker"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                    android:id="@+id/model_label"
-                    style="@style/CardLabelStyle"
+                    android:id="@+id/modelLabel"
+                    style="@style/Subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="Model"
-                    android:layout_width="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/makerLabel" />
+
+            <LinearLayout
+                    android:id="@+id/yearLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/mileageLayout"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/maker_label" />
+                    app:layout_constraintTop_toBottomOf="@+id/modelLabel">
 
-            <TextView
-                    android:id="@+id/year_label"
-                    style="@style/CardLabelStyle"
-                    android:text="Year"
-                    android:layout_width="wrap_content"
+                <TextView
+                        android:id="@+id/yearLabel"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Year" />
+
+                <TextView
+                        android:id="@+id/yearValue"
+                        style="@style/ItemDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="TextView" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:id="@+id/mileageLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/model_label" />
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/fuelLayout"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/yearLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/modelLabel">
 
-            <TextView
-                    android:id="@+id/mileage_label"
-                    style="@style/CardLabelStyle"
-                    android:text="Mileage"
-                    android:layout_width="wrap_content"
+                <TextView
+                        android:id="@+id/mileageLabel"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mileage" />
+
+                <TextView
+                        android:id="@+id/mileageValue"
+                        style="@style/ItemDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/fuelLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/year_label" />
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mileageLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/modelLabel">
+
+
+                <TextView
+                        android:id="@+id/fuelLabel"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fuel" />
+
+                <TextView
+                        android:id="@+id/fuelValue"
+                        style="@style/ItemDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="TextView" />
+            </LinearLayout>
 
             <TextView
-                    android:id="@+id/auction_start_label"
-                    style="@style/CardLabelStyle"
-                    android:text="Auction Start"
+                    android:id="@+id/auctionStartLabel"
+                    style="@style/AuctionCountdownLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:text="Auction Start"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mileage_label" />
+                    app:layout_constraintTop_toBottomOf="@+id/mileageLayout" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

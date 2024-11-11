@@ -1,6 +1,7 @@
 using CarSellerCore.Model;
 using CarSellerCore.Services;
 using CarSellerCore.Services.Abstraction;
+using CarSellerCore.Util;
 
 namespace CarSellerCore.ViewModel.Details;
 
@@ -39,8 +40,8 @@ public class DetailViewModel : BaseViewModel
             ("Engine Size", Car.EngineSize),
             ("Fuel Type", Car.Fuel),
             ("Year", Car.Year.ToString()),
-            ("Mileage", Car.Mileage.ToString()),
-            ("Auction Date and Time", Car.AuctionDateTime),
+            ("Mileage", $"{Car.Mileage} Kilometers"),
+            ("Auction Date and Time", DataUtil.FormatDate(Car.AuctionDateTime)),
             ("Starting Bid", $"{Car.StartingBid} €"),
         }));
         
@@ -50,7 +51,6 @@ public class DetailViewModel : BaseViewModel
             ("Colour", Car.Details.Specification.Colour),
             ("Fuel", Car.Details.Specification.Fuel),
             ("Transmission", Car.Details.Specification.Transmission),
-            ("Auction Date and Time", Car.AuctionDateTime),
             ("Number Of Doors", Car.Details.Specification.NumberOfDoors.ToString()),
             ("CO2 Emissions", Car.Details.Specification.Co2Emissions),
             ("NOX Emissions", Car.Details.Specification.NoxEmissions.ToString()),

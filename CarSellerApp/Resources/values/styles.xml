@@ -81,7 +81,7 @@
         <item name="tickColorInactive">#CCCCCC</item>
     </style>
     
-    <style name="ButtonOutlinedWhite" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="ButtonOutlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:height">@dimen/gap_15</item>
         <item name="android:width">0dp</item>
         <item name="strokeColor">@android:color/white</item>
@@ -94,6 +94,15 @@
         <item name="android:layout_marginBottom">@dimen/bottom_margin</item>
         <item name="android:layout_marginStart">@dimen/button_side_margin</item>
         <item name="android:layout_marginEnd">@dimen/button_side_margin</item>
+    </style>
+
+    <style name="AuctionCountdownLabel" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>>
+        <item name="android:textColor">#D32F2F</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

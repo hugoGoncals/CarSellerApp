@@ -155,7 +155,7 @@
 
     <Button
             android:id="@+id/confirmOptions"
-            style="@style/ButtonOutlinedWhite"
+            style="@style/ButtonOutlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
