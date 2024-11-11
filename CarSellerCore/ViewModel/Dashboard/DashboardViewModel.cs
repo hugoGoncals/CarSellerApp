@@ -131,6 +131,10 @@ public abstract class DashboardViewModel : BaseViewModel
             }
         }
         
+        FilteredList = FilteredList.OrderBy(car => !DateTime.TryParse(car.AuctionDateTime, out DateTime parsedDate) || parsedDate < DateTime.Now)
+            .ThenBy(car => DateTime.TryParse(car.AuctionDateTime, out DateTime parsedDate) ? parsedDate : DateTime.MaxValue)
+            .ToList();
+        
         DisplayList = FilteredList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
     }
 
