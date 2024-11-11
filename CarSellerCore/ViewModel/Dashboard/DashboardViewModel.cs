@@ -36,7 +36,7 @@ public abstract class DashboardViewModel : BaseViewModel
     }
 
 
-    public DashboardViewModel(ICarService carService) : base(carService)
+    public DashboardViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
     {
     }
 
@@ -57,9 +57,18 @@ public abstract class DashboardViewModel : BaseViewModel
     public override async Task OnAppearing()
     {
         await base.OnAppearing();
+        await FetchCarsAsync();
+    }
+
+    private async Task FetchCarsAsync()
+    {
         try
         {
-            CarsList ??= await CarService.GetCarsAsync();
+            DialogService.ShowLoading();
+            var cars = await CarService.GetCarsAsync();
+            DialogService.HideLoading();
+            
+            CarsList ??= cars;
             FilteredList ??= CarsList;
 
             if (CarService.FilterSelection is not null)
@@ -72,7 +81,7 @@ public abstract class DashboardViewModel : BaseViewModel
         }
         catch (Exception e)
         {
-            
+            DialogService.HideLoading();
         } 
     }
 
@@ -186,12 +195,22 @@ public abstract class DashboardViewModel : BaseViewModel
         DisplayList = FilteredList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
     }
 
-    public void OnFavorite(int carId, bool isFavorite)
+    public async Task OnFavorite(int carId, bool isFavorite)
     {
         try
         {
+            var car = DisplayList.FirstOrDefault(car => car.Id == carId);
+
+            if (car is null)
+            {
+                return;
+            }
+            
+            DialogService.ShowLoading();
             DisplayList.FirstOrDefault(car => car.Id == carId).Favourite = isFavorite;
-            CarService.UpdateCar(DisplayList.FirstOrDefault(car => car.Id == carId));
+            await CarService.UpdateCar(DisplayList.FirstOrDefault(car => car.Id == carId));
+            DialogService.HideLoading();
+            
             OnPropertyChanged(nameof(DisplayList));
         }
         catch (Exception e)
@@ -205,7 +224,7 @@ public abstract class DashboardViewModel : BaseViewModel
         var size = PagesLimitPerPage[pos];
         var oldLimit = PageLimit;
         PageLimit = size;
-        DisplayList = FilteredList.Skip((CurrentPage - 1) * oldLimit).Take(PageLimit).ToList();
+        DisplayList = FilteredList?.Skip((CurrentPage - 1) * oldLimit).Take(PageLimit).ToList() ?? new List<Car>();
     }
     
     public abstract void NavigateToCarDetails(int id);

@@ -88,7 +88,7 @@ public abstract class FilterViewModel : BaseViewModel
 
     public bool IsFavorite { get; set; }
 
-    public FilterViewModel(ICarService carService) : base(carService)
+    public FilterViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
     {
     }
 

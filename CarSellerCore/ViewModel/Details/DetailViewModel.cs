@@ -10,7 +10,7 @@ public class DetailViewModel : BaseViewModel
     private int? _carId;
     private List<(string title, List<(string title, string description)> description)> _carDetailList;
 
-    public DetailViewModel(ICarService carService) : base(carService)
+    public DetailViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
     {
     }
 

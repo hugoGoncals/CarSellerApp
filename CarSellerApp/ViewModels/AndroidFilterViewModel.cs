@@ -10,7 +10,7 @@ public class AndroidFilterViewModel : FilterViewModel
 {
     private readonly INavService _navService;
 
-    public AndroidFilterViewModel(ICarService carService, INavService navService) : base(carService)
+    public AndroidFilterViewModel(ICarService carService, INavService navService, IDialogService dialogService) : base(carService, dialogService)
     {
         _navService = navService;
     }

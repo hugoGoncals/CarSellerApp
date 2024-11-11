@@ -35,6 +35,7 @@ public class CarService : ICarService
                 car.Id = index + 1;
             }
 
+            await Task.Delay(1000);
             return _cars;
         }
         catch (Exception ex)
@@ -44,9 +45,15 @@ public class CarService : ICarService
         }
     }
 
-    public void UpdateCar(Car car)
+    public async Task UpdateCar(Car car)
     {
+        await Task.Delay(1000);
         var carToUpdate = _cars.FirstOrDefault(c => c.Id == car.Id);
+        if (carToUpdate is null)
+        {
+            return;
+        }
+        
         carToUpdate = car;
         
         var index = _cars.FindIndex(c => c.Id == car.Id);

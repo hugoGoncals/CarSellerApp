@@ -8,7 +8,7 @@ public class AndroidDashboardViewModel : DashboardViewModel
 {
     private readonly INavService _navService;
 
-    public AndroidDashboardViewModel(INavService navService, ICarService carService) : base(carService)
+    public AndroidDashboardViewModel(INavService navService, ICarService carService, IDialogService dialogService) : base(carService, dialogService)
     {
         _navService = navService;
     }

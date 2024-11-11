@@ -9,7 +9,7 @@ namespace CarSellerApp.Adapter;
 public class CarAdapter : RecyclerView.Adapter
 {
     private readonly ICarAdapterListenner _listenner;
-    private List<Car> _carList;
+    private List<Car> _carList = new List<Car>();
 
     public CarAdapter(ICarAdapterListenner listenner)
     {

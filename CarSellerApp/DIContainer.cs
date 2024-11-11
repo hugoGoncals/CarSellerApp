@@ -18,6 +18,7 @@ public static class DIContainer
             new ServiceCollection()
                 .AddSingleton<ICarService, CarService>()
                 .AddSingleton<INavService, NavService>()
+                .AddSingleton<IDialogService, DialogService>()
                 .AddTransient<DashboardViewModel, AndroidDashboardViewModel>()
                 .AddTransient<FilterViewModel, AndroidFilterViewModel>()
                 .AddTransient<DetailViewModel>()
