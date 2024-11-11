@@ -3,6 +3,8 @@ using Android.Views;
 using Bumptech.Glide;
 using CarSellerApp.Fragments.Base;
 using CarSellerCore.ViewModel.Details;
+using Google.Android.Flexbox;
+using Google.Android.Material.Chip;
 
 namespace CarSellerApp.Fragments;
 
@@ -48,6 +50,7 @@ public class DetailFragment : BaseFragment<DetailViewModel>
         for (var index = 0; index < carDetailList.Count; index++)
         {
             var section = carDetailList[index];
+            
             var sectionTitleTextView = new TextView(_infoList.Context)
             {
                 Text = section.section,
@@ -65,12 +68,49 @@ public class DetailFragment : BaseFragment<DetailViewModel>
 
             sectionTitleTextView.Text = section.section;
             _infoList.AddView(sectionTitleTextView);
+            
+            
+            if (section.section == "Equipment")
+            {
+                CreateEquipmentSection(section.Item2);
+                continue;
+            }
 
             foreach (var detail in section.Item2)
             {
                 CreateDataView(detail);
             }
         }
+    }
+
+    private void CreateEquipmentSection(List<(string title, string description)> sectionItem2)
+    {
+        FlexboxLayout chipsLayout = new FlexboxLayout(Context);
+        var chipsParams = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MatchParent,
+            ViewGroup.LayoutParams.WrapContent);
+        chipsLayout.LayoutParameters = chipsParams;
+        chipsLayout.FlexWrap = 1;
+        chipsLayout.JustifyContent = 0;
+        
+        for (var index = 0; index < sectionItem2.Count; index++)
+        {
+            var option = sectionItem2[index];
+            var chip = new Chip(Context)
+            {
+                Checkable = false
+            };
+
+            var layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WrapContent,
+                ViewGroup.LayoutParams.WrapContent);
+            chip.LayoutParameters = layoutParams;
+            
+            chip.Text = option.description;
+            chipsLayout.AddView(chip);
+        }
+        
+        _infoList.AddView(chipsLayout);
     }
 
     private void CreateDataView((string title, string description) dataItem)
