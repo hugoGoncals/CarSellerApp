@@ -1,164 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
-
-    <TextView
-            android:id="@+id/filterSection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/gap_5"
-            android:layout_marginTop="@dimen/gap_5"
-            android:text="Order By"
-            style="@style/Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <HorizontalScrollView
-            android:id="@+id/scrollView2"
             android:fillViewport="true"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="@dimen/gap_5"
-            android:paddingRight="@dimen/gap_5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filterSection">
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/makerLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Maker"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <androidx.constraintlayout.widget.ConstraintLayout
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="match_parent">
 
-                <AutoCompleteTextView
-                        android:id="@+id/autoComplete"
-                        android:layout_width="match_parent"
+        <TextView
+                android:id="@+id/filterSection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_5"
+                android:layout_marginTop="@dimen/gap_5"
+                android:text="Order By"
+                style="@style/Title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
+                android:id="@+id/scrollView2"
+                android:fillViewport="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="@dimen/gap_5"
+                android:paddingRight="@dimen/gap_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterSection">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/makerLayout"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                />
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="Maker"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/modelLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Model"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/makerLayout"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    <AutoCompleteTextView
+                            android:id="@+id/autoComplete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                    />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <AutoCompleteTextView
-                        android:id="@+id/modelAutoComplete"
-                        android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/modelLayout"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.slider.Slider
-                    android:id="@+id/priceRange"
-                    style="@style/CustomSliderTheme"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:valueFrom="0.0"
-                    android:valueTo="100.0"
-                    android:layout_marginTop="@dimen/gap_5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/modelLayout" />
+                        android:hint="Model"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/makerLayout"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <TextView
-                    android:id="@+id/startingBid"
-                    style="@style/Subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/priceRange" />
-            
-            <com.google.android.material.slider.Slider
-                    android:id="@+id/maxValue"
-                    style="@style/CustomSliderTheme"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:valueFrom="0.0"
-                    android:valueTo="100.0"
-                    android:layout_marginTop="@dimen/gap_5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/startingBid" />
+                    <AutoCompleteTextView
+                            android:id="@+id/modelAutoComplete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                    />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.slider.Slider
+                        android:id="@+id/priceRange"
+                        style="@style/CustomSliderTheme"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="0.0"
+                        android:valueTo="100.0"
+                        android:layout_marginTop="@dimen/gap_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/modelLayout" />
 
-            <TextView
-                    android:id="@+id/maxValueLabel"
-                    style="@style/Subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/maxValue" />
+                <TextView
+                        android:id="@+id/startingBid"
+                        style="@style/Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/priceRange" />
 
-            <com.google.android.material.chip.Chip
-                    android:id="@+id/isFavorite"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:text="Show only favorites"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/maxValueLabel"/>
+                <com.google.android.material.slider.Slider
+                        android:id="@+id/maxValue"
+                        style="@style/CustomSliderTheme"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="0.0"
+                        android:valueTo="100.0"
+                        android:layout_marginTop="@dimen/gap_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/startingBid" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </HorizontalScrollView>
+                <TextView
+                        android:id="@+id/maxValueLabel"
+                        style="@style/Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/maxValue" />
 
-    <TextView
-            android:id="@+id/sortSection"
-            style="@style/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:text="SortBy"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/isFavorite"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:text="Show only favorites"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/maxValueLabel"/>
 
-    <HorizontalScrollView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sortSection">
-        <com.google.android.material.chip.ChipGroup
-                android:id="@+id/sortOptions"
-                app:singleSelection="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-    </HorizontalScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </HorizontalScrollView>
 
-    <Button
-            android:id="@+id/confirmOptions"
-            style="@style/ButtonOutlined"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="Confirm selection"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/sortSection"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="SortBy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+        <HorizontalScrollView
+                android:id="@+id/sortLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sortSection">
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/sortOptions"
+                    app:singleSelection="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </HorizontalScrollView>
+
+        <Button
+                android:id="@+id/confirmOptions"
+                style="@style/ButtonOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Confirm selection"
+                app:layout_constraintTop_toBottomOf="@+id/sortLayout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+   
+</ScrollView>
