@@ -17,7 +17,7 @@ public class AndroidDashboardViewModel : DashboardViewModel
     {
         var bundle = new Bundle();
         bundle.PutInt("CarId", id);
-        _navService.Navigate(Resource.Id.action_firstFragment_to_secondFragment, bundle);
+        _navService.Navigate(Resource.Id.action_dashboard_to_detail, bundle);
     }
 
     public override void NavigateToFilters() => _navService.Navigate(Resource.Id.action_dashboard_to_filters);
