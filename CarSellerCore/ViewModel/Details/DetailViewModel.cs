@@ -27,8 +27,8 @@ public class DetailViewModel : BaseViewModel
 
     public override async Task OnAppearing()
     {
-        base.OnAppearing();
-        Car ??= await CarService.GetCar(CarId ?? 0);
+        await base.OnAppearing();
+        Car ??= CarService.GetCar(CarId ?? 0);
         CreateCarDetailsList();
     }
 

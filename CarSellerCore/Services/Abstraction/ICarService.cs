@@ -10,5 +10,5 @@ public interface ICarService
     
     Task UpdateCar(Car car);
 
-    Task<Car> GetCar(int id);
+    Car GetCar(int id);
 }

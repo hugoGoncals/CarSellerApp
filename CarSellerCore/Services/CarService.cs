@@ -7,7 +7,7 @@ namespace CarSellerCore.Services;
 
 public class CarService : ICarService
 {
-    private List<Car> _cars { get; set; } = new List<Car>();
+    private List<Car> _cars { get; set; } = new();
     
     public FilterModel FilterSelection { get; set; }
 
@@ -23,7 +23,7 @@ public class CarService : ICarService
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Car)).Assembly;
             Stream stream = assembly.GetManifestResourceStream("CarSellerCore.Resource.dataset.json");
             string jsonString = "";
-            using (var reader = new System.IO.StreamReader(stream))
+            using (var reader = new StreamReader(stream))
             {
                 jsonString = reader.ReadToEnd();
             }
@@ -72,7 +72,7 @@ public class CarService : ICarService
         }
     }
 
-    public async Task<Car> GetCar(int id)
+    public Car GetCar(int id)
     {
         var car = _cars.FirstOrDefault(car => car.Id == id);
         return car ?? new Car();
