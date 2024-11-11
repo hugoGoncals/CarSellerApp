@@ -18,7 +18,20 @@ public abstract class DashboardViewModel : BaseViewModel
         set => SetProperty(ref _currentPage, value);
     }
 
-    private int MaxPages => CarsList.Count / 5;
+    public string CurrentPageLabel => $"Page {CurrentPage} of {MaxPages}"; 
+
+    public int MaxPages
+    {
+        get
+        {
+            if (FilteredList is null)
+            {
+                return 0;
+            }
+            
+            return (int)Math.Ceiling((double)FilteredList.Count / PageLimit);
+        }
+    }
 
     public List<int> PagesLimitPerPage => new()
     {
@@ -45,7 +58,7 @@ public abstract class DashboardViewModel : BaseViewModel
         get => _carsList;
         set => SetProperty(ref _carsList, value);
     }
-    
+
     public List<Car> FilteredList { get; set; }
 
     public List<Car> DisplayList

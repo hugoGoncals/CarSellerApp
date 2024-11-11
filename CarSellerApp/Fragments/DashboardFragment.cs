@@ -41,7 +41,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         _recyclerView.AddItemDecoration(new CommonItemSpaceDecoration(Context, 0, 0, 20, 0));
         _recyclerView.SetAdapter(_carAdapter);
 
-        _pageIndicator.Text = ViewModel.CurrentPage.ToString();
+        _pageIndicator.Text = ViewModel.CurrentPageLabel;
         
         var adapter = new ArrayAdapter<int>(view.Context, Android.Resource.Layout.SimpleSpinnerItem, ViewModel.PagesLimitPerPage);
         adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
@@ -85,9 +85,10 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         {
             case nameof(ViewModel.DisplayList):
                 _carAdapter.CarList = ViewModel.DisplayList;
+                _pageIndicator.Text = ViewModel.CurrentPageLabel;
                 break;
             case nameof(ViewModel.CurrentPage):
-                _pageIndicator.Text = ViewModel.CurrentPage.ToString();
+                _pageIndicator.Text = ViewModel.CurrentPageLabel;
                 break;
         }
     }
