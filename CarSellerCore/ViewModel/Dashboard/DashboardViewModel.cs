@@ -73,7 +73,10 @@ public abstract class DashboardViewModel : BaseViewModel
 
             if (CarService.FilterSelection is not null)
             {
+                DialogService.ShowLoading();
+                await Task.Delay(1000);
                 FilterCarsForAuction();
+                DialogService.HideLoading();
                 return;
             }
             

@@ -15,6 +15,11 @@ public class CarService : ICarService
     {
         try
         {
+            if (_cars.Any())
+            {
+                return _cars;
+            }
+            
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Car)).Assembly;
             Stream stream = assembly.GetManifestResourceStream("CarSellerCore.Resource.dataset.json");
             string jsonString = "";
