@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSellerApp", "CarSellerAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSellerCore", "..\CarSellerCore\CarSellerCore.csproj", "{E3518BB8-6DBB-44F4-AD80-A77077937787}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSellerAppTests", "..\CarSellerAppTests\CarSellerAppTests.csproj", "{22FE21F6-EBC4-473E-BF52-E025F5FEB035}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{52569195-984A-4354-BF6E-5FAA6EC7BEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52569195-984A-4354-BF6E-5FAA6EC7BEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52569195-984A-4354-BF6E-5FAA6EC7BEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22FE21F6-EBC4-473E-BF52-E025F5FEB035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22FE21F6-EBC4-473E-BF52-E025F5FEB035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22FE21F6-EBC4-473E-BF52-E025F5FEB035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22FE21F6-EBC4-473E-BF52-E025F5FEB035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
