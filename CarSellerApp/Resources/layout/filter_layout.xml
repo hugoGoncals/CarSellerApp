@@ -9,8 +9,8 @@
             android:id="@+id/filterSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="@dimen/gap_5"
+            android:layout_marginTop="@dimen/gap_5"
             android:text="Order By"
             style="@style/Title"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/gap_5"
+            android:paddingRight="@dimen/gap_5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filterSection">
@@ -67,8 +67,6 @@
                         android:inputType="none"
                 />
             </com.google.android.material.textfield.TextInputLayout>
-
-
             <com.google.android.material.slider.Slider
                     android:id="@+id/priceRange"
                     style="@style/CustomSliderTheme"
@@ -76,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:valueFrom="0.0"
                     android:valueTo="100.0"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modelLayout" />
@@ -98,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:valueFrom="0.0"
                     android:valueTo="100.0"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/startingBid" />

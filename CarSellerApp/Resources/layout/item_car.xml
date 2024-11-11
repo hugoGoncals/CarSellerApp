@@ -33,7 +33,7 @@
                     android:id="@+id/add_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
+                    android:padding="@dimen/gap_5"
                     android:background="@drawable/cap_rounded_dot_line"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +58,8 @@
                     android:id="@+id/favoriteImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
+                    android:layout_marginEnd="@dimen/gap_5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             <View
@@ -75,7 +75,7 @@
                 android:id="@+id/detailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp"
+                android:padding="@dimen/gap_5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/photoLayout">
 
@@ -85,7 +85,7 @@
                     style="@style/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     android:text="Maker"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
                     android:id="@+id/yearLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toStartOf="@+id/mileageLayout"
@@ -135,7 +135,7 @@
                     android:id="@+id/mileageLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toStartOf="@+id/fuelLayout"
@@ -164,7 +164,7 @@
                     android:id="@+id/fuelLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -193,15 +193,14 @@
                     android:id="@+id/bidingLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/gap_5"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/fuelLayout"
                     app:layout_constraintTop_toBottomOf="@+id/modelLabel">
-
-
+                
                 <TextView
                         android:id="@+id/bidingLabel"
                         style="@style/ItemTitle"
@@ -224,7 +223,7 @@
                     style="@style/AuctionCountdownLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="@dimen/gap_10"
                     android:text="Auction Start"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

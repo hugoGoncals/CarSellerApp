@@ -15,16 +15,25 @@ public static class DIContainer
 {
     public static void Configure()
     {
-        Ioc.Default.ConfigureServices(
-            new ServiceCollection()
-                .AddSingleton<ICarService, CarService>()
-                .AddSingleton<INavService, NavService>()
-                .AddSingleton<IDialogService, DialogService>()
-                .AddTransient<SplashScreenViewModel, AndroidSplashScreenViewModel>()
-                .AddTransient<DashboardViewModel, AndroidDashboardViewModel>()
-                .AddTransient<FilterViewModel, AndroidFilterViewModel>()
-                .AddTransient<DetailViewModel>()
-                .BuildServiceProvider());
+        var services = new ServiceCollection();
+        RegisterServices(services);
+        RegisterViewModels(services);
 
+        Ioc.Default.ConfigureServices(services.BuildServiceProvider());
+    }
+
+    private static void RegisterServices(ServiceCollection services)
+    {
+        services.AddSingleton<ICarService, CarService>();
+        services.AddSingleton<INavService, NavService>();
+        services.AddSingleton<IDialogService, DialogService>();
+    }
+
+    private static void RegisterViewModels(ServiceCollection services)
+    {
+        services.AddTransient<SplashScreenViewModel, AndroidSplashScreenViewModel>();
+        services.AddTransient<DashboardViewModel, AndroidDashboardViewModel>();
+        services.AddTransient<FilterViewModel, AndroidFilterViewModel>();
+        services.AddTransient<DetailViewModel>();
     }
 }
