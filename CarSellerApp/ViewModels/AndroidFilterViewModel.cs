@@ -2,7 +2,6 @@ using CarSellerApp.Services;
 using CarSellerCore.Model;
 using CarSellerCore.Services.Abstraction;
 using CarSellerCore.ViewModel.Filter;
-using Object = Java.Lang.Object;
 
 namespace CarSellerApp.ViewModels;
 

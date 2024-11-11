@@ -22,10 +22,9 @@ public class BaseFragment<TViewModel> : AndroidX.Fragment.App.Fragment where TVi
             await ViewModel.OnAppearing();
         }
 
-        public override async void OnPause()
+        public override void OnPause()
         {
             base.OnPause();
-
             ViewModel.PropertyChanged -= OnPropertyChanged;
         }
 
@@ -33,9 +32,6 @@ public class BaseFragment<TViewModel> : AndroidX.Fragment.App.Fragment where TVi
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             Parent.SetToolbarUI(ViewModel.Title, ViewModel.HasBackNavigation);
-            //HasOptionsMenu = false;
-
-            //ViewModel.InitializeViewModel();
             return view;
         }
 

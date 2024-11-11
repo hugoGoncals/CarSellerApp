@@ -33,10 +33,10 @@ public class CarService : ICarService
             };
 
             var result = JsonSerializer.Deserialize<List<Car>>(jsonString, options);
-            _cars = result
+            _cars = result?
                 .OrderBy(car => !DateTime.TryParse(car.AuctionDateTime, out DateTime parsedDate) || parsedDate < DateTime.Now)
                 .ThenBy(car => DateTime.TryParse(car.AuctionDateTime, out DateTime parsedDate) ? parsedDate : DateTime.MaxValue)
-                .ToList();
+                .ToList() ?? new List<Car>();
 
             for (var index = 0; index < _cars.Count; index++)
             {

@@ -13,17 +13,6 @@ public class AndroidDashboardViewModel : DashboardViewModel
         _navService = navService;
     }
 
-    public override async Task OnAppearing()
-    {
-        await base.OnAppearing();
-        var teste = _navService
-            .NavController?
-            .CurrentBackStackEntry?
-            .SavedStateHandle
-            .GetLiveData("FilterOptions")
-            .Value;
-    }
-
     public override void NavigateToCarDetails(int id)
     {
         var bundle = new Bundle();

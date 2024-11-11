@@ -16,12 +16,6 @@ public class BaseViewModel : ObservableObject
     {
         CarService = carService;
         DialogService = dialogService;
-        _ = InitializeViewModel();
-    }
-
-    public async Task InitializeViewModel()
-    {
-        
     }
 
     public virtual async Task OnAppearing()

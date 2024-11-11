@@ -16,30 +16,30 @@ public class CarViewHolder : RecyclerView.ViewHolder
     private Car _car;
     
     private CancellationTokenSource _cancellationTokenSource;
-    
-    public ConstraintLayout PhotoLayout { get; private set; }
-    
-    public MaterialCardView RootLayout { get; private set; }
-    
-    public ConstraintLayout DetailLayout { get; private set; }
-    
-    public ShapeableImageView PhotoPlaceholder { get; private set; }
-    
-    public ImageView FavoriteImage { get; private set; }
-    
-    public TextView MakerLabel { get; private set; }
-    
-    public TextView ModelLabel { get; private set; }
-    
-    public TextView YearValue { get; private set; }
-    
-    public TextView MileageValue { get; private set; }
-    
-    public TextView FuelValue { get; private set; }
-    
-    public TextView BidingValue { get; private set; }
-    
-    public TextView AuctionLabel { get; private set; }
+
+    private ConstraintLayout PhotoLayout { get; }
+
+    private MaterialCardView RootLayout { get; }
+
+    private ConstraintLayout DetailLayout { get; }
+
+    private ShapeableImageView PhotoPlaceholder { get; }
+
+    private ImageView FavoriteImage { get; }
+
+    private TextView MakerLabel { get; }
+
+    private TextView ModelLabel { get; }
+
+    private TextView YearValue { get; }
+
+    private TextView MileageValue { get; }
+
+    private TextView FuelValue { get; }
+
+    private TextView BidingValue { get; }
+
+    private TextView AuctionLabel { get; }
 
     public CarViewHolder(View itemView, ICarAdapterListenner listenner) : base(itemView)
     {
@@ -74,6 +74,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         DetailLayout.Clickable = true;
         RootLayout.Alpha = 1f;
         StartCountdown(_car.AuctionDateTime);
+        
         if (_car.SelectedPhoto != null && _car.SelectedPhoto.Length > 0)
         {
             Glide.With(PhotoPlaceholder.Context).Load(_car.SelectedPhoto).Into(PhotoPlaceholder);
@@ -91,8 +92,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
     
     private void StartCountdown(string auctionDateTime)
     {
-        DateTime auctionEndTime = DateTime.ParseExact(auctionDateTime, "yyyy/MM/dd HH:mm:ss", null);
-        long millisInFuture = (long)(auctionEndTime - DateTime.Now).TotalMilliseconds;
+        var auctionEndTime = DateTime.ParseExact(auctionDateTime, "yyyy/MM/dd HH:mm:ss", null);
+        var millisInFuture = (long)(auctionEndTime - DateTime.Now).TotalMilliseconds;
 
         StopCountdown();
 
@@ -113,7 +114,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
     {
         while (millisInFuture > 0 && !cancellationToken.IsCancellationRequested)
         {
-            TimeSpan timeRemaining = TimeSpan.FromMilliseconds(millisInFuture);
+            var timeRemaining = TimeSpan.FromMilliseconds(millisInFuture);
             var remainingDays = timeRemaining.Days % 7;
             AuctionLabel.Text = $"{remainingDays} {(remainingDays == 1 ? "Day" : "Days")} {timeRemaining.Hours:D2}:{timeRemaining.Minutes:D2}:{timeRemaining.Seconds:D2}";
             
@@ -130,7 +131,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         }
     }
 
-    public void StopCountdown()
+    private void StopCountdown()
     {
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource = null;

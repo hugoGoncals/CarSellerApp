@@ -10,6 +10,10 @@ public abstract class FilterViewModel : BaseViewModel
     private int _endBidValue;
     private List<string> _modelOptions = new();
     private List<string> _makerOptions = new();
+    
+    public FilterViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
+    {
+    }
 
     public override string Title => "Set configurations";
     
@@ -31,7 +35,7 @@ public abstract class FilterViewModel : BaseViewModel
         set => SetProperty(ref _modelOptions, value);
     }
 
-    public List<FilterOption> SortOptions { get; set; } = new List<FilterOption>()
+    public List<FilterOption> SortOptions { get; set; } = new()
     {
         new FilterOption()
         {
@@ -89,10 +93,6 @@ public abstract class FilterViewModel : BaseViewModel
     }
 
     public bool IsFavorite { get; set; }
-
-    public FilterViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
-    {
-    }
 
     public override async  Task OnAppearing()
     {

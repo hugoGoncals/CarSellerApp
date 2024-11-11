@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using CarSellerApp.ViewHolder;
@@ -9,7 +8,7 @@ namespace CarSellerApp.Adapter;
 public class CarAdapter : RecyclerView.Adapter
 {
     private readonly ICarAdapterListenner _listenner;
-    private List<Car> _carList = new List<Car>();
+    private List<Car> _carList = new();
 
     public CarAdapter(ICarAdapterListenner listenner)
     {

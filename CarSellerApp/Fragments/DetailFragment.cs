@@ -26,8 +26,6 @@ public class DetailFragment : BaseFragment<DetailViewModel>
         _modelLabel = view.FindViewById<TextView>(Resource.Id.modelLabel);
         _carImage = view.FindViewById<ImageView>(Resource.Id.carImage);
         
-        
-        _infoList.RemoveAllViews();
         return view;
     }
 
@@ -47,6 +45,7 @@ public class DetailFragment : BaseFragment<DetailViewModel>
     
     private void DisplayCarDetails(List<(string section, List<(string title, string description)>)> carDetailList)
     {
+        _infoList.RemoveAllViews();
         for (var index = 0; index < carDetailList.Count; index++)
         {
             var section = carDetailList[index];
@@ -68,7 +67,6 @@ public class DetailFragment : BaseFragment<DetailViewModel>
 
             sectionTitleTextView.Text = section.section;
             _infoList.AddView(sectionTitleTextView);
-            
             
             if (section.section == "Equipment")
             {
@@ -93,9 +91,8 @@ public class DetailFragment : BaseFragment<DetailViewModel>
         chipsLayout.FlexWrap = 1;
         chipsLayout.JustifyContent = 0;
         
-        for (var index = 0; index < sectionItem2.Count; index++)
+        foreach (var option in sectionItem2)
         {
-            var option = sectionItem2[index];
             var chip = new Chip(Context)
             {
                 Checkable = false

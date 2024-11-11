@@ -1,16 +1,10 @@
-﻿using Android;
-using Android.App;
-using Android.OS;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using AndroidX.AppCompat.App;
 using AndroidX.ConstraintLayout.Widget;
 using AndroidX.Navigation;
 using AndroidX.Navigation.Fragment;
 using CarSellerApp.Services;
-using CarSellerCore.ViewModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Essentials;
 
 namespace CarSellerApp;
@@ -27,7 +21,7 @@ public class MainActivity : AppCompatActivity
     {
         base.OnCreate(savedInstanceState);
 
-        DIContainer.Configure(); // Initialize DI
+        DIContainer.Configure();
         Platform.Init(this, savedInstanceState);
         
         var navService = Ioc.Default.GetService<INavService>();

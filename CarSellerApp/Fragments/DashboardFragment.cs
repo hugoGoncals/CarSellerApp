@@ -1,8 +1,8 @@
 using System.ComponentModel;
 using Android.Views;
 using AndroidX.RecyclerView.Widget;
-using CAPMobile.Droid.ItemDecoration;
 using CarSellerApp.Adapter;
+using CarSellerApp.Decorators;
 using CarSellerApp.Fragments.Base;
 using CarSellerCore.ViewModel.Dashboard;
 
@@ -20,7 +20,6 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
 
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
         base.OnCreateView(inflater, container, savedInstanceState);
         View view = inflater.Inflate(Resource.Layout.dashboard, container, false);
         _recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);

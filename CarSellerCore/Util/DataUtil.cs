@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace CarSellerCore.Util;
 
 public class DataUtil
@@ -19,7 +17,7 @@ public class DataUtil
 
     private static string GetDaySuffix(int day)
     {
-        if (day >= 11 && day <= 13)
+        if (day is >= 11 and <= 13)
         {
             return "th";
         }

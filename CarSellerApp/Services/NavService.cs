@@ -1,11 +1,9 @@
 using AndroidX.Navigation;
-using Object = Java.Lang.Object;
 
 namespace CarSellerApp.Services;
 
 public class NavService : INavService
 {
-
     private MainActivity _activity;
     
     public NavController NavController => Navigation.FindNavController(_activity, Resource.Id.my_nav_host_fragment);

@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
+    <PackageReference Include="FlexboxLayout.Xamarin.Android" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-rc.2.24473.5" />
     <PackageReference Include="SimpleInjector" Version="5.5.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />

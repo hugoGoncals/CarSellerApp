@@ -37,7 +37,6 @@ public class FilterFragment : BaseFragment<FilterViewModel>
         _maxValue.Touch += Slider_Touch;
         _confirmOptions.Click += ConfirmOptionsOnClick;
         _isFavorite.CheckedChange += IsFavoriteOnCheckedChange;
-        
         _makerAutoComplete.ItemClick += MakerMakerAutoCompleteOnClick;
         _modelAutoComplete.ItemClick += ModelAutoCompleteOnClick;
 
@@ -46,10 +45,18 @@ public class FilterFragment : BaseFragment<FilterViewModel>
         return view;
     }
 
-    private void IsFavoriteOnCheckedChange(object? sender, CompoundButton.CheckedChangeEventArgs e)
+    public override void OnDestroyView()
     {
-        ViewModel.IsFavorite = e.IsChecked;
+        base.OnDestroyView();
+        _minValue.Touch -= Slider_Touch;
+        _maxValue.Touch -= Slider_Touch;
+        _confirmOptions.Click -= ConfirmOptionsOnClick;
+        _isFavorite.CheckedChange -= IsFavoriteOnCheckedChange;
+        _makerAutoComplete.ItemClick -= MakerMakerAutoCompleteOnClick;
+        _modelAutoComplete.ItemClick -= ModelAutoCompleteOnClick;
     }
+
+    private void IsFavoriteOnCheckedChange(object? sender, CompoundButton.CheckedChangeEventArgs e) => ViewModel.IsFavorite = e.IsChecked;
 
     private void ModelAutoCompleteOnClick(object? sender, EventArgs e) => ViewModel.SelectedModel = _modelAutoComplete.Text;
 
@@ -59,10 +66,7 @@ public class FilterFragment : BaseFragment<FilterViewModel>
         ViewModel.OnMakerSelected(_makerAutoComplete.Text);
     }
 
-    private void ConfirmOptionsOnClick(object? sender, EventArgs e)
-    {
-        ViewModel.OnConfigurationsSetted();
-    }
+    private void ConfirmOptionsOnClick(object? sender, EventArgs e) => ViewModel.OnConfigurationsSetted();
 
     protected override void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
@@ -92,12 +96,12 @@ public class FilterFragment : BaseFragment<FilterViewModel>
                 break;
             
             case nameof(ViewModel.ModelOptions):
-                ArrayAdapter<string> modelAdapter = new ArrayAdapter<string>(Context, Resource.Layout.dropdown_item, ViewModel.ModelOptions);
+                var modelAdapter = new ArrayAdapter<string>(Context, Resource.Layout.dropdown_item, ViewModel.ModelOptions);
                 _modelAutoComplete.Adapter = modelAdapter;
                 break;
             
             case nameof(ViewModel.MakerOptions):
-                ArrayAdapter<string> makerAdapter = new ArrayAdapter<string>(Context, Resource.Layout.dropdown_item, ViewModel.MakerOptions);
+                var makerAdapter = new ArrayAdapter<string>(Context, Resource.Layout.dropdown_item, ViewModel.MakerOptions);
                 _makerAutoComplete.Adapter = makerAdapter;
                 break;
         }
@@ -140,21 +144,20 @@ public class FilterFragment : BaseFragment<FilterViewModel>
             var slider = sender as Slider;
             if (slider != null)
             {
-                // Update the specific property based on the slider being touched
                 if (slider == _minValue)
                 {
-                    OnValueChange(slider.Value, true, isMinValue: true);
+                    OnValueChange(slider.Value, isMinValue: true);
                 }
                 else if (slider == _maxValue)
                 {
-                    OnValueChange(slider.Value, true, isMinValue: false);
+                    OnValueChange(slider.Value, isMinValue: false);
                 }
             }
         }
         e.Handled = false;
     }
     
-    private void OnValueChange(float value, bool fromUser, bool isMinValue)
+    private void OnValueChange(float value, bool isMinValue)
     {
         if (isMinValue)
         {
@@ -165,5 +168,4 @@ public class FilterFragment : BaseFragment<FilterViewModel>
             ViewModel.EndBidValue = (int)value;
         }
     }
-
 }

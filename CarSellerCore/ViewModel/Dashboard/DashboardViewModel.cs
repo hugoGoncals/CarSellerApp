@@ -11,6 +11,14 @@ public abstract class DashboardViewModel : BaseViewModel
     private int _currentPage = 1;
     private int _pageLimit = 5;
     private List<Car> _displayList;
+    
+    public DashboardViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
+    {
+    }
+
+    public override string Title => "Auction List";
+
+    public override bool HasBackNavigation => false;
 
     public int CurrentPage
     {
@@ -47,12 +55,7 @@ public abstract class DashboardViewModel : BaseViewModel
         get => _pageLimit;
         set => SetProperty(ref _pageLimit, value);
     }
-
-
-    public DashboardViewModel(ICarService carService, IDialogService dialogService) : base(carService, dialogService)
-    {
-    }
-
+    
     public List<Car> CarsList
     {
         get => _carsList;
@@ -149,11 +152,8 @@ public abstract class DashboardViewModel : BaseViewModel
             .ToList();
         
         DisplayList = FilteredList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
+        CarService.FilterSelection = null;
     }
-
-    public override string Title => "Auction List";
-
-    public override bool HasBackNavigation => false;
 
     public async Task OnAssociateImage(int id)
     {
