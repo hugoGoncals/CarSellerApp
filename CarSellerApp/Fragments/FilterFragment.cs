@@ -21,6 +21,7 @@ public class FilterFragment : BaseFragment<FilterViewModel>
 
     public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
+        base.OnCreateView(inflater, container, savedInstanceState);
         var view = inflater.Inflate(Resource.Layout.filter_layout, container, false);
         _sortLayout = view.FindViewById<ChipGroup>(Resource.Id.sortOptions);
         _minValue = view.FindViewById<Slider>(Resource.Id.priceRange);

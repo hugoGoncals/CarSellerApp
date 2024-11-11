@@ -134,7 +134,9 @@ public abstract class DashboardViewModel : BaseViewModel
         DisplayList = FilteredList.Skip((CurrentPage - 1) * PageLimit).Take(PageLimit).ToList();
     }
 
-    public string Title => "This is dashboard title";
+    public override string Title => "Auction List";
+
+    public override bool HasBackNavigation => false;
 
     public async Task OnAssociateImage(int id)
     {

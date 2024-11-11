@@ -16,7 +16,7 @@ public class DetailFragment : BaseFragment<DetailViewModel>
     public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
     {
         ViewModel.CarId = Arguments?.GetInt("CarId");
-
+        base.OnCreateView(inflater, container, savedInstanceState);
         View view = inflater.Inflate(Resource.Layout.detail_page, container, false);
         
         _infoList = view.FindViewById<LinearLayout>(Resource.Id.detailsLayout);

@@ -21,6 +21,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
+        base.OnCreateView(inflater, container, savedInstanceState);
         View view = inflater.Inflate(Resource.Layout.dashboard, container, false);
         _recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
         _sortByImage = view.FindViewById<ImageView>(Resource.Id.sortBy);
@@ -32,6 +33,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         _sortByImage.Click += SortByImageOnClick;
         _previousPage.Click += PreviousPageOnClick;
         _nextPage.Click += NextPageOnClick;
+        _spinnerPage.ItemSelected += SpinnerPageOnItemSelected;
 
         var layoutManager = new LinearLayoutManager(view.Context);
         _carAdapter = new CarAdapter(this);
@@ -47,17 +49,20 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         
         int imageResId = ViewModel.Filters ? Resource.Drawable.ic_filters_on : Resource.Drawable.ic_filters_off;
         _sortByImage.SetImageResource(imageResId);
-
-        // Handle selection events
-        _spinnerPage.ItemSelected += SpinnerPageOnItemSelected;
         
         return view;
     }
 
-    private void SpinnerPageOnItemSelected(object? sender, AdapterView.ItemSelectedEventArgs e)
+    public override void OnDestroyView()
     {
-        ViewModel.OnPageLimitChanged(e.Position);
+        base.OnDestroyView();
+        _sortByImage.Click -= SortByImageOnClick;
+        _previousPage.Click -= PreviousPageOnClick;
+        _nextPage.Click -= NextPageOnClick;
+        _spinnerPage.ItemSelected -= SpinnerPageOnItemSelected;
     }
+
+    private void SpinnerPageOnItemSelected(object? sender, AdapterView.ItemSelectedEventArgs e) => ViewModel.OnPageLimitChanged(e.Position);
 
     private void NextPageOnClick(object? sender, EventArgs e)
     {
@@ -71,10 +76,7 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
         ViewModel.PreviousPage();
     }
 
-    private void SortByImageOnClick(object? sender, EventArgs e)
-    {
-        ViewModel.NavigateToFilters();
-    }
+    private void SortByImageOnClick(object? sender, EventArgs e) => ViewModel.NavigateToFilters();
 
     protected override void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
@@ -93,5 +95,6 @@ public class DashboardFragment : BaseFragment<DashboardViewModel>, ICarAdapterLi
     public void OnPhotoAdded(int id) => ViewModel.OnAssociateImage(id);
 
     public void NavigateToDetails(int id) => ViewModel.NavigateToCarDetails(id);
+    
     public void OnFavoriteClick(int carId, bool isFavorite) => ViewModel.OnFavorite(carId, isFavorite);
 }

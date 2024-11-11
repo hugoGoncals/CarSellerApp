@@ -5,6 +5,7 @@ using CarSellerCore.Services.Abstraction;
 using CarSellerCore.ViewModel.Dashboard;
 using CarSellerCore.ViewModel.Details;
 using CarSellerCore.ViewModel.Filter;
+using CarSellerCore.ViewModel.Splash;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +20,7 @@ public static class DIContainer
                 .AddSingleton<ICarService, CarService>()
                 .AddSingleton<INavService, NavService>()
                 .AddSingleton<IDialogService, DialogService>()
+                .AddTransient<SplashScreenViewModel, AndroidSplashScreenViewModel>()
                 .AddTransient<DashboardViewModel, AndroidDashboardViewModel>()
                 .AddTransient<FilterViewModel, AndroidFilterViewModel>()
                 .AddTransient<DetailViewModel>()

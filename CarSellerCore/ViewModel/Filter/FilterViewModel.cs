@@ -11,6 +11,8 @@ public abstract class FilterViewModel : BaseViewModel
     private List<string> _modelOptions = new();
     private List<string> _makerOptions = new();
 
+    public override string Title => "Set configurations";
+    
     public List<Car> Cars { get; set; }
 
     public string SelectedMaker { get; set; }

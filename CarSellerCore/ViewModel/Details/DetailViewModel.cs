@@ -14,6 +14,8 @@ public class DetailViewModel : BaseViewModel
     {
     }
 
+    public override string Title => "Car details";
+
     public int? CarId { get; set; }
 
     public List<(string title, List<(string title, string description)> description)> CarDetailList

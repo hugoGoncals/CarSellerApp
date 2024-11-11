@@ -32,7 +32,8 @@ public class BaseFragment<TViewModel> : AndroidX.Fragment.App.Fragment where TVi
         public override View? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-            HasOptionsMenu = false;
+            Parent.SetToolbarUI(ViewModel.Title, ViewModel.HasBackNavigation);
+            //HasOptionsMenu = false;
 
             //ViewModel.InitializeViewModel();
             return view;
