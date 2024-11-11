@@ -13,7 +13,7 @@ public class DetailViewModel : BaseViewModel
     {
     }
 
-    public override string Title => "Car details";
+    public override string Title => "Car Details";
 
     public int? CarId { get; set; }
 

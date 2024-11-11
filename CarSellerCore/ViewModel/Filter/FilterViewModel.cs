@@ -15,7 +15,7 @@ public abstract class FilterViewModel : BaseViewModel
     {
     }
 
-    public override string Title => "Set configurations";
+    public override string Title => "Set Configurations";
     
     public List<Car> Cars { get; set; }
 
