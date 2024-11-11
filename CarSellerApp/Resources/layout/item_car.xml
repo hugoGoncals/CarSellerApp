@@ -62,6 +62,13 @@
                     android:layout_marginEnd="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+            <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="#A2ABB1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -149,8 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:textAlignment="center" />
+                        android:gravity="center" />
 
             </LinearLayout>
 
@@ -161,8 +167,8 @@
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/bidingLayout"
                     app:layout_constraintStart_toEndOf="@+id/mileageLayout"
                     app:layout_constraintTop_toBottomOf="@+id/modelLabel">
 
@@ -182,7 +188,37 @@
                         android:layout_marginTop="5dp"
                         android:text="TextView" />
             </LinearLayout>
+            
+            <LinearLayout
+                    android:id="@+id/bidingLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/fuelLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/modelLabel">
 
+
+                <TextView
+                        android:id="@+id/bidingLabel"
+                        style="@style/ItemTitle"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Starting biding" />
+
+                <TextView
+                        android:id="@+id/bidingValue"
+                        style="@style/ItemDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"/>
+            </LinearLayout>
+            
             <TextView
                     android:id="@+id/auctionStartLabel"
                     style="@style/AuctionCountdownLabel"

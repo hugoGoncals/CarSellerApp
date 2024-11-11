@@ -37,6 +37,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
     
     public TextView FuelValue { get; private set; }
     
+    public TextView BidingValue { get; private set; }
+    
     public TextView AuctionLabel { get; private set; }
 
     public CarViewHolder(View itemView, ICarAdapterListenner listenner) : base(itemView)
@@ -52,6 +54,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         YearValue = itemView.FindViewById<TextView>(Resource.Id.yearValue);
         MileageValue = itemView.FindViewById<TextView>(Resource.Id.mileageValue);
         FuelValue = itemView.FindViewById<TextView>(Resource.Id.fuelValue);
+        BidingValue = itemView.FindViewById<TextView>(Resource.Id.bidingValue);
         AuctionLabel = itemView.FindViewById<TextView>(Resource.Id.auctionStartLabel);
         
         PhotoLayout.Click += PhotoLayoutOnClick;
@@ -67,6 +70,7 @@ public class CarViewHolder : RecyclerView.ViewHolder
         YearValue.Text = _car.Year.ToString();
         MileageValue.Text = $"{_car.Mileage} Kilometers";
         FuelValue.Text = _car.Fuel;
+        BidingValue.Text = $"{_car.StartingBid}€"; 
         DetailLayout.Clickable = true;
         RootLayout.Alpha = 1f;
         StartCountdown(_car.AuctionDateTime);
@@ -110,7 +114,8 @@ public class CarViewHolder : RecyclerView.ViewHolder
         while (millisInFuture > 0 && !cancellationToken.IsCancellationRequested)
         {
             TimeSpan timeRemaining = TimeSpan.FromMilliseconds(millisInFuture);
-            AuctionLabel.Text = $"{timeRemaining.Days % 7} Days {timeRemaining.Hours:D2}:{timeRemaining.Minutes:D2}:{timeRemaining.Seconds:D2}";
+            var remainingDays = timeRemaining.Days % 7;
+            AuctionLabel.Text = $"{remainingDays} {(remainingDays == 1 ? "Day" : "Days")} {timeRemaining.Hours:D2}:{timeRemaining.Minutes:D2}:{timeRemaining.Seconds:D2}";
             
             await Task.Delay(1000);
 
