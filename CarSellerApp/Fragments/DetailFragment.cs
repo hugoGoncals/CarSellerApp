@@ -114,8 +114,8 @@ public class DetailFragment : BaseFragment<DetailViewModel>
     {
         var dataView = LayoutInflater.From(_infoList.Context)?.Inflate(Resource.Layout.item_detail, _infoList, false);
 
-        var titleView = dataView.FindViewById<TextView>(Resource.Id.transaction_confirmation_item_title);
-        var descriptionView = dataView.FindViewById<TextView>(Resource.Id.transaction_confirmation_item_description);
+        var titleView = dataView.FindViewById<TextView>(Resource.Id.item_title);
+        var descriptionView = dataView.FindViewById<TextView>(Resource.Id.item_description);
 
         titleView.Text = dataItem.title;
         descriptionView.Text = dataItem.description;

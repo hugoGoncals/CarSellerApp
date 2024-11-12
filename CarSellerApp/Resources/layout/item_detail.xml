@@ -7,7 +7,7 @@
         android:layout_marginBottom="@dimen/gap_7">
 
     <TextView
-            android:id="@+id/transaction_confirmation_item_title"
+            android:id="@+id/item_title"
             style="@style/ItemTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -16,13 +16,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/transaction_confirmation_item_description"
+            android:id="@+id/item_description"
             style="@style/ItemDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/gap_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_confirmation_item_title" />
+            app:layout_constraintTop_toBottomOf="@+id/item_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
