@@ -62,7 +62,7 @@ public class DetailViewModel : BaseViewModel
         {
             ("Logbook", Car.Details.Ownership.LogBook),
             ("Number Of Owners", Car.Details.Ownership.NumberOfOwners.ToString()),
-            ("Date Of Registration", Car.Details.Ownership.DateOfRegistration),
+            ("Date Of Registration", DataUtil.FormatDate(Car.Details.Ownership.DateOfRegistration)),
         }));
 
         List<(string title, string description)> equipmentList = new List<(string title, string description)>();
